@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+Sitemap: https://drvikramrajjainrheumatologist.in/sitemap.xml
+
+# Allow crawling of all content
+Disallow:
+
+# Prevent crawling of admin or private areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+# Optimize crawl rate
+Crawl-delay: 10
+
+# Allow all robots complete access
+Disallow:

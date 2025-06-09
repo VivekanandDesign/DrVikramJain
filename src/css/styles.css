@@ -77,24 +77,32 @@ body {
     justify-content: center;
     padding: 0.75rem 1.5rem;
     font-weight: 500;
+    font-size: 1rem;
     border-radius: 0.5rem;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
-/* Primary Button with better contrast */
 .btn-primary {
-    background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 100%);
-    color: #FFFFFF;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
     font-weight: 500;
-    border: none;
+    transition: all 0.3s ease;
+    border: 2px solid var(--primary-color);
     box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #1E3A8A 0%, #2563EB 100%);
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
     transform: translateY(-1px);
     box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+}
+
+.btn-primary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
 .btn-primary:active {
@@ -102,21 +110,33 @@ body {
 }
 
 .btn-primary:disabled {
-    background: #94A3B8;
+    opacity: 0.7;
     cursor: not-allowed;
 }
 
 /* Secondary Button */
 .btn-secondary {
-    background: #FFFFFF;
-    color: #3B82F6;
-    border: 2px solid #3B82F6;
+    background-color: var(--white);
+    color: var(--text-dark);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 2px solid var(--text-light);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .btn-secondary:hover {
-    background: #F0F9FF;
-    border-color: #2563EB;
-    color: #2563EB;
+    background-color: var(--primary-light);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 /* Ghost Button */
@@ -422,4 +442,16 @@ body {
 
 .social-icon:hover i {
     transform: scale(1.2);
+}
+
+/* Modal Button Styles */
+#bookingModal .btn {
+    border-radius: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Navigation Button Styles */
+.nav-link .btn {
+    border-radius: 0.5rem;
 }

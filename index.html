@@ -54,15 +54,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="src/css/styles.css">
 </head>
-<body class="font-poppins">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm py-4 sticky top-0 z-50">
-        <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center">
-            <a href="/" class="flex items-center space-x-2 relative z-10">
-                <span class="text-lg sm:text-xl font-bold text-gray-800">Dr. Vikram Jain</span>
+<body class="bg-gray-50">
+    <!-- Include Navbar -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 flex justify-between items-center h-16">
+            <a href="/" class="flex items-center space-x-2">
+                <span class="text-xl font-bold text-primary">Dr. Vikram Jain</span>
             </a>
             
-            <div class="hidden md:flex space-x-8">
+            <div class="hidden md:flex items-center space-x-8">
                 <a href="pages/about.html" class="nav-link text-gray-700 hover:text-primary transition duration-300">About</a>
                 <a href="pages/services.html" class="nav-link text-gray-700 hover:text-primary transition duration-300">Services</a>
                 <a href="pages/experience.html" class="nav-link text-gray-700 hover:text-primary transition duration-300">Experience</a>
@@ -74,35 +74,24 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
             </button>
-            
-            <div class="hidden md:block">
-                <a href="pages/contact.html" class="btn btn-primary">Book Appointment</a>
-            </div>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
     <div id="mobileMenu" class="hidden fixed inset-0 bg-white z-50">
-        <div class="container mx-auto px-6 py-8">
-            <div class="flex justify-between items-center mb-8">
-                <a href="#" class="flex items-center space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </svg>
-                    <span class="text-xl font-bold text-gray-800">Dr. Vikram Jain</span>
-                </a>
-                <button id="closeMobileMenu" class="text-gray-600 focus:outline-none">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-end mb-8">
+                <button id="closeMobileMenu" class="text-gray-600">
                     <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
-            <div class="flex flex-col space-y-6">
-                <a href="pages/about.html" class="text-gray-700 text-lg hover:text-primary transition duration-300">About</a>
-                <a href="pages/services.html" class="text-gray-700 text-lg hover:text-primary transition duration-300">Services</a>
-                <a href="pages/experience.html" class="text-gray-700 text-lg hover:text-primary transition duration-300">Experience</a>
-                <a href="pages/contact.html" class="text-gray-700 text-lg hover:text-primary transition duration-300">Contact</a>
-                <a href="pages/contact.html" class="btn btn-primary w-full text-center">Book Appointment</a>
+            <div class="space-y-8">
+                <a href="pages/about.html" class="block text-center text-lg text-gray-700 hover:text-primary">About</a>
+                <a href="pages/services.html" class="block text-center text-lg text-gray-700 hover:text-primary">Services</a>
+                <a href="pages/experience.html" class="block text-center text-lg text-gray-700 hover:text-primary">Experience</a>
+                <a href="pages/contact.html" class="block text-center text-lg text-gray-700 hover:text-primary">Contact</a>
             </div>
         </div>
     </div>
@@ -153,6 +142,43 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">About Dr. Vikram Jain</h2>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        With over 20 years of experience in healthcare, Dr. Vikram Jain has established himself as a leading medical professional. His commitment to providing exceptional patient care and expertise in various medical disciplines has earned him the trust of thousands of patients.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-certificate text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Certified Expert</h4>
+                                <p class="text-sm text-gray-600">Board Certified Professional</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user-md text-green-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">20+ Years</h4>
+                                <p class="text-sm text-gray-600">Professional Experience</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=800" alt="Dr. Vikram Jain in clinic" class="rounded-xl shadow-xl w-full h-[400px] object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section id="services" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-6">
@@ -198,163 +224,248 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-16 md:py-24 bg-gray-50">
+    <!-- Appointment Form Section -->
+    <section class="py-16 bg-gradient-to-br from-gray-50 to-blue-50">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">About Dr. Vikram Jain</h2>
-                    <p class="text-gray-600 mb-8 leading-relaxed">
-                        With over 20 years of experience in healthcare, Dr. Vikram Jain has established himself as a leading medical professional. His commitment to providing exceptional patient care and expertise in various medical disciplines has earned him the trust of thousands of patients.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 mb-8">
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-certificate text-primary text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800">Certified Expert</h4>
-                                <p class="text-sm text-gray-600">Board Certified Professional</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center space-x-3">
-                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-user-md text-green-600 text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800">20+ Years</h4>
-                                <p class="text-sm text-gray-600">Professional Experience</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="text-center mb-12">
+                <div class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-4">
+                    Schedule Your Visit
                 </div>
-                <div class="md:w-1/2">
-                    <img src="https://images.unsplash.com/photo-1582750433449-648ed127bb54?auto=format&fit=crop&q=80&w=800" alt="Dr. Vikram Jain in clinic" class="rounded-xl shadow-xl w-full h-[400px] object-cover">
-                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Book Your Appointment</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Get expert rheumatology care at your preferred location and time. Our simple booking process ensures you can schedule your consultation hassle-free.
+                </p>
             </div>
-        </div>
-    </section>
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 md:py-24 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">What Our Patients Say</h2>
-                <p class="text-xl text-gray-600">Trusted by thousands of satisfied patients</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-primary"></i>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <!-- Hospital Information -->
+                <div class="lg:col-span-2">
+                    <div class="sticky top-24 space-y-6">
+                        <!-- Padmashree Diagnostics -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-hospital text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Padmashree Diagnostics</h3>
+                                    <p class="text-primary">Vijayanagar</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-2">Consultation Hours</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-600">Mon/Wed/Fri/Sat</span>
+                                            <span class="font-medium text-primary">8:30 AM - 9:30 AM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm">
+                                    <p class="text-gray-600 mb-2">For appointments:</p>
+                                    <a href="tel:08023100735" class="text-primary hover:underline block">080-23100735</a>
+                                    <a href="tel:08023406895" class="text-primary hover:underline block">080-23406895</a>
+                                </div>
+                                <a href="#" class="inline-flex items-center text-primary hover:text-primary-dark">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    <span>View on Maps</span>
+                                </a>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">Rajesh Kumar</h4>
-                            <p class="text-sm text-gray-600">Patient since 2020</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"Dr. Jain's expertise and caring approach made all the difference in my treatment. Highly recommended!"</p>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">Priya Sharma</h4>
-                            <p class="text-sm text-gray-600">Patient since 2021</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"The level of care and attention I received was exceptional. Dr. Jain took the time to understand my concerns."</p>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-sm">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-gray-800">Amit Patel</h4>
-                            <p class="text-sm text-gray-600">Patient since 2019</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"Professional, knowledgeable, and caring. Dr. Jain and his team provide excellent healthcare services."</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 md:py-24 bg-gray-50">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col lg:flex-row gap-12">
-                <div class="lg:w-1/2">
-                    <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Get in Touch</h2>
-                    <p class="text-gray-600 mb-8">Schedule an appointment or send us a message. We're here to help.</p>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-map-marker-alt text-primary"></i>
+                        <!-- Bhagwan Mahaveer Jain Hospital -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-hospital-alt text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Bhagwan Mahaveer Jain Hospital</h3>
+                                    <p class="text-primary">Vasanth Nagar</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 mb-1">Location</h4>
-                                <p class="text-gray-600">123 Medical Plaza, Mumbai, Maharashtra 400001</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-2">Consultation Hours</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-600">Monday - Saturday</span>
+                                            <span class="font-medium text-primary">10:00 AM - 3:00 PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm">
+                                    <p class="text-gray-600 mb-2">For appointments:</p>
+                                    <a href="tel:9008912905" class="text-primary hover:underline block">900-891-2905</a>
+                                </div>
+                                <a href="#" class="inline-flex items-center text-primary hover:text-primary-dark">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    <span>View on Maps</span>
+                                </a>
                             </div>
                         </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-phone text-primary"></i>
+
+                        <!-- Optima Super Speciality Hospital -->
+                        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                            <div class="flex items-center space-x-4 mb-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-hospital-user text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Optima Super Speciality Hospital</h3>
+                                    <p class="text-primary">Mahalakshmi Layout</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 mb-1">Phone</h4>
-                                <p class="text-gray-600">+91 98765 43210</p>
-                            </div>
-                        </div>
-                        
-                        <div class="flex items-start space-x-4">
-                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                                <i class="fas fa-envelope text-primary"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-gray-800 mb-1">Email</h4>
-                                <p class="text-gray-600">contact@drvikramjain.com</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-medium text-gray-900 mb-2">Consultation Hours</h4>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-600">Mon-Thu & Sat</span>
+                                            <span class="font-medium text-primary">5:00 PM - 7:00 PM</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm">
+                                    <p class="text-gray-600 mb-2">For appointments:</p>
+                                    <a href="tel:9980094600" class="text-primary hover:underline block">99800-94600</a>
+                                    <a href="tel:08023494600" class="text-primary hover:underline block">080-23494600</a>
+                                </div>
+                                <a href="#" class="inline-flex items-center text-primary hover:text-primary-dark">
+                                    <i class="fas fa-map-marker-alt mr-2"></i>
+                                    <span>View on Maps</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="lg:w-1/2">
-                    <form class="bg-white p-8 rounded-xl shadow-sm">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                            <div>
-                                <label class="block text-gray-700 mb-2" for="name">Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="Your name">
+
+                <!-- Appointment Form -->
+                <div class="lg:col-span-3">
+                    <div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+                        <!-- Form Info -->
+                        <div class="bg-blue-50 p-4 rounded-lg mb-8">
+                            <div class="flex items-start">
+                                <i class="fas fa-info-circle text-blue-600 mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="text-sm font-medium text-blue-900">Important Information</h4>
+                                    <ul class="mt-2 text-sm text-blue-700 space-y-1">
+                                        <li>• Please arrive 15 minutes before your appointment time</li>
+                                        <li>• Bring relevant medical records and test reports</li>
+                                        <li>• Consultation duration: 20-30 minutes</li>
+                                        <li>• You'll receive a confirmation email after booking</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                <label class="block text-gray-700 mb-2" for="phone">Phone</label>
-                                <input type="tel" id="phone" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="Your phone number">
+                        </div>
+
+                        <!-- Form Steps -->
+                        <div class="flex justify-between items-center mb-8">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full bg-primary text-white flex items-center justify-center font-medium text-lg shadow-md">
+                                    <i class="fas fa-hospital-user"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-900">Hospital & Time</p>
+                                    <p class="text-xs text-gray-500">Choose your preferred location</p>
+                                </div>
+                            </div>
+                            <div class="flex-1 mx-4 h-1 bg-gray-200 rounded">
+                                <div class="w-0 h-full bg-primary rounded transition-all duration-300"></div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center font-medium text-lg">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm font-medium text-gray-400">Your Details</p>
+                                    <p class="text-xs text-gray-500">Complete your information</p>
+                                </div>
                             </div>
                         </div>
-                        
-                        <div class="mb-6">
-                            <label class="block text-gray-700 mb-2" for="email">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="Your email">
-                        </div>
-                        
-                        <div class="mb-6">
-                            <label class="block text-gray-700 mb-2" for="message">Message</label>
-                            <textarea id="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary" placeholder="Your message"></textarea>
-                        </div>
-                        
-                        <button type="submit" class="w-full btn btn-primary">Send Message</button>
-                    </form>
+
+                        <!-- Form -->
+                        <form id="appointmentForm" class="space-y-8">
+                            <!-- Step 1: Choose Time -->
+                            <div id="step1" class="space-y-6">
+                                <div class="relative">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Select Hospital <span class="text-red-500">*</span></label>
+                                    <select name="location" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent appearance-none bg-white">
+                                        <option value="">Choose a location</option>
+                                        <option value="Padmashree Diagnostics">Padmashree Diagnostics, Vijayanagar</option>
+                                        <option value="Bhagwan Mahaveer Jain Hospital">Bhagwan Mahaveer Jain Hospital, Vasanth Nagar</option>
+                                        <option value="Optima Super Speciality Hospital">Optima Super Speciality Hospital, Mahalakshmi Layout</option>
+                                    </select>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 pt-6">
+                                        <i class="fas fa-chevron-down text-gray-400"></i>
+                                    </div>
+                                    <div id="hospitalAvailability" class="mt-3"></div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Date <span class="text-red-500">*</span></label>
+                                        <div class="relative">
+                                            <input type="date" name="appointment_date" required class="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent">
+                                            <div class="pointer-events-none absolute right-3 inset-y-0 flex items-center">
+                                                <i class="fas fa-calendar-alt text-gray-400 text-lg"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Preferred Time <span class="text-red-500">*</span></label>
+                                        <div class="relative">
+                                            <select name="appointment_time" required class="w-full pl-4 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent appearance-none">
+                                                <option value="">Select a time</option>
+                                            </select>
+                                            <div class="pointer-events-none absolute right-3 inset-y-0 flex items-center">
+                                                <i class="fas fa-chevron-down text-gray-400"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 2: Personal Info -->
+                            <div id="step2" class="space-y-6 hidden">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name <span class="text-red-500">*</span></label>
+                                        <input type="text" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Enter your full name">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number <span class="text-red-500">*</span></label>
+                                        <input type="tel" name="phone" required pattern="[0-9]{10}" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="10-digit mobile number">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Email <span class="text-red-500">*</span></label>
+                                    <input type="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Your email address">
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Additional Notes</label>
+                                    <textarea name="notes" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="Any specific concerns or medical history you'd like to share"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Form Navigation -->
+                            <div class="flex justify-between items-center pt-6">
+                                <button type="button" id="prevBtn" class="btn-secondary hidden">
+                                    <i class="fas fa-arrow-left mr-2"></i> Previous
+                                </button>
+                                <button type="button" id="nextBtn" class="btn-primary ml-auto flex items-center">
+                                    Next <i class="fas fa-arrow-right ml-2"></i>
+                                </button>
+                                <button type="submit" id="submitBtn" class="btn-primary hidden flex items-center">
+                                    <span>Confirm Appointment</span>
+                                    <i class="fas fa-check ml-2"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -437,23 +548,42 @@
                 </ul>
             </div>
 
-            <!-- Working Hours -->
+            <!-- Consultation Hours -->
             <div class="mt-8 lg:mt-0">
-                <h3 class="text-lg font-semibold text-white mb-4">Working Hours</h3>
-                <ul class="space-y-3">
-                    <li class="flex justify-between">
-                        <span>Monday - Friday:</span>
-                        <span class="text-primary">9:00 AM - 6:00 PM</span>
-                    </li>
-                    <li class="flex justify-between">
-                        <span>Saturday:</span>
-                        <span class="text-primary">9:00 AM - 4:00 PM</span>
-                    </li>
-                    <li class="flex justify-between">
-                        <span>Sunday:</span>
-                        <span class="text-primary">Closed</span>
-                    </li>
-                </ul>
+                <h3 class="text-lg font-semibold text-white mb-4">Consultation Timings</h3>
+                <div class="space-y-6 text-sm">
+                    <!-- Padmashree Diagnostics -->
+                    <div>
+                        <h4 class="text-primary font-semibold mb-2">📍 Padmashree Diagnostics, Vijayanagar</h4>
+                        <p class="text-gray-400">Monday / Wednesday / Friday / Saturday</p>
+                        <p class="text-primary font-medium">8:30 AM - 9:30 AM</p>
+                        <p class="text-gray-400 mt-1">For appointment: <br>
+                            <a href="tel:08023100735" class="hover:text-primary">080-23100735</a> or 
+                            <a href="tel:08023406895" class="hover:text-primary">080-23406895</a>
+                        </p>
+                    </div>
+
+                    <!-- Bhagwan Mahaveer Jain Hospital -->
+                    <div>
+                        <h4 class="text-primary font-semibold mb-2">📍 Bhagwan Mahaveer Jain Hospital, Vasanth Nagar</h4>
+                        <p class="text-gray-400">Monday - Saturday</p>
+                        <p class="text-primary font-medium">10:00 AM - 3:00 PM</p>
+                        <p class="text-gray-400 mt-1">For appointment: <br>
+                            <a href="tel:9008912905" class="hover:text-primary">9008912905</a>
+                        </p>
+                    </div>
+
+                    <!-- Optima Super Speciality Hospital -->
+                    <div>
+                        <h4 class="text-primary font-semibold mb-2">📍 Optima Super Speciality Hospital, Mahalakshmi Layout</h4>
+                        <p class="text-gray-400">Monday - Thursday & Saturday</p>
+                        <p class="text-primary font-medium">5:00 PM - 7:00 PM</p>
+                        <p class="text-gray-400 mt-1">For appointment: <br>
+                            <a href="tel:9980094600" class="hover:text-primary">99800-94600</a> or 
+                            <a href="tel:08023494600" class="hover:text-primary">080-23494600</a>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -469,6 +599,8 @@
     </div>
 </footer>
 
+    <!-- Scripts -->
+    <script src="src/js/appointment-form.js"></script>
     <script src="src/js/main.js"></script>
 </body>
 </html>

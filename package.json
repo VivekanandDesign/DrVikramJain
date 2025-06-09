@@ -1,15 +1,15 @@
 {
-  "name": "drvikramjain",
+  "name": "dr-vikram-jain",
   "version": "1.0.0",
+  "description": "Dr. Vikram Jain's medical practice website",
   "main": "index.js",
   "scripts": {
-    "start": "lite-server",
+    "dev": "lite-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "devDependencies": {
     "autoprefixer": "^10.4.21",
     "lite-server": "^2.6.1",

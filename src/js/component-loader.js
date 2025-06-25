@@ -91,12 +91,11 @@
             }
         });
         
-        // After components are loaded, ensure navigation is fixed
+        // After components are loaded, ensure static navigation is applied 
         setTimeout(() => {
-            if (window && window.fixNavigation) {
-                console.log('Component loader triggering navigation fix');
-                window.fixNavigation();
-            }
+            // Dispatch event for static navigation to handle
+            document.dispatchEvent(new CustomEvent('component:loaded'));
+            console.log('Component loader triggering static navigation');
         }, 200); // Give components time to load
     }, { once: true });
 })();

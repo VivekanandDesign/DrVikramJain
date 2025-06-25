@@ -1,0 +1,26 @@
+<!-- Page Loader -->
+<div id="pageLoader" class="fixed inset-0 bg-white z-50 flex justify-center items-center flex-col transition-opacity duration-500">
+    <div class="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-4"></div>
+    <p class="text-blue-600 font-medium">Loading...</p>
+</div>
+
+<script>
+    // Hide loader when page is fully loaded - basic fallback
+    window.addEventListener('load', function() {
+        const loader = document.getElementById('pageLoader');
+        if (loader) {
+            loader.classList.add('opacity-0');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 500);
+        }
+    });
+    
+    // Load the more sophisticated page loader script
+    if (!document.querySelector('script[src*="page-loader.js"]')) {
+        const scriptPath = window.location.pathname.includes('/pages/') ? '../src/js/page-loader.js' : 'src/js/page-loader.js';
+        const script = document.createElement('script');
+        script.src = scriptPath;
+        document.head.appendChild(script);
+    }
+</script>

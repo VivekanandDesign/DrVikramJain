@@ -9,6 +9,24 @@
     <link href="src/css/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Critical mobile menu CSS for better performance */
+        #mobileMenu {
+            transition: all 0.3s ease-in-out;
+        }
+        .overflow-hidden {
+            overflow: hidden !important; 
+            position: relative;
+            height: 100%;
+        }
+        @media (max-width: 767px) {
+            body.overflow-hidden {
+                position: fixed;
+                width: 100%;
+                overflow-y: hidden;
+            }
+        }
+    </style>
     <script>
         // Function to load HTML components
         async function loadComponent(url, targetId) {
@@ -23,11 +41,12 @@
     </script>
 </head>
 <body class="bg-gray-50">
+    <!-- Navigation will be loaded here -->
     <!-- Navigation Component -->
     <div id="navbarComponent"></div>
 
     <!-- 404 Error Section -->
-    <section class="py-20 md:py-32 min-h-screen relative overflow-hidden bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
+    <section class="py-16 md:py-24 min-h-[80vh] relative overflow-hidden bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50">
         <!-- Decorative Background Elements -->
         <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div class="absolute -top-24 right-0 w-96 h-96 bg-red-200/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
@@ -120,15 +139,15 @@
                     </div>
                     <p class="text-gray-600 mb-4">For medical emergencies or urgent consultations, please contact:</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="tel:+919988776655" 
-                           class="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+                        <a href="tel:+918040875555" 
+                           class="inline-flex items-center justify-center px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition duration-300 transform hover:scale-105 w-full sm:w-auto text-center">
                             <i class="fas fa-phone mr-2"></i>
-                            Emergency: +91 99887 76655
+                            Emergency: 080 4087 5555
                         </a>
-                        <a href="tel:+919876543210" 
-                           class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
-                            <i class="fas fa-calendar-check mr-2"></i>
-                            Consultation: +91 98765 43210
+                        <a href="https://wa.me/919742715139" 
+                           class="inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-300 transform hover:scale-105 w-full sm:w-auto text-center">
+                            <i class="fab fa-whatsapp mr-2"></i>
+                            WhatsApp: 97427 15139
                         </a>
                     </div>
                 </div>
@@ -141,12 +160,6 @@
 
     <!-- Scripts -->
     <script>
-        // Load components
-        document.addEventListener('DOMContentLoaded', () => {
-            loadComponent('src/components/navbar.html', 'navbarComponent');
-            loadComponent('src/components/footer.html', 'footerComponent');
-        });
-
         // Simple search functionality
         document.querySelector('input[type="text"]').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
@@ -180,6 +193,59 @@
             } else {
                 window.location.href = 'index.html';
             }
+        });
+    </script>
+    
+    <script src="src/js/main.js"></script>
+    <script src="src/js/navigation-fix.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load components and ensure path correction works
+            loadComponent('src/components/navbar.html', 'navbarComponent')
+                .then(() => {
+                    console.log('Navbar component loaded in 404 page');
+                    // Dispatch a custom event to let other scripts know the component is loaded
+                    document.dispatchEvent(new CustomEvent('component:loaded', {
+                        detail: { targetId: 'navbarComponent' }
+                    }));
+                    
+                    // Extra safety to fix paths in 404 page specifically
+                    setTimeout(function() {
+                        // Fix all navigation links to be root-relative
+                        const navLinks = {
+                            home: [document.getElementById('homeLink'), document.getElementById('mobileHomeLink')],
+                            about: [document.getElementById('aboutLink'), document.getElementById('mobileAboutLink')],
+                            services: [document.getElementById('servicesLink'), document.getElementById('mobileServicesLink')],
+                            contact: [document.getElementById('contactLink'), document.getElementById('mobileContactLink')]
+                        };
+                        
+                        // 404 page is always in root directory
+                        navLinks.home.forEach(link => {
+                            if (link) link.setAttribute('href', 'index.html');
+                        });
+                        
+                        navLinks.about.forEach(link => {
+                            if (link) link.setAttribute('href', 'pages/about.html');
+                        });
+                        
+                        navLinks.services.forEach(link => {
+                            if (link) link.setAttribute('href', 'pages/services.html');
+                        });
+                        
+                        navLinks.contact.forEach(link => {
+                            if (link) link.setAttribute('href', 'pages/contact.html');
+                        });
+                    }, 100);
+                });
+            
+            loadComponent('src/components/footer.html', 'footerComponent')
+                .then(() => {
+                    console.log('Footer component loaded in 404 page');
+                    // Dispatch a custom event to let other scripts know the component is loaded
+                    document.dispatchEvent(new CustomEvent('component:loaded', {
+                        detail: { targetId: 'footerComponent' }
+                    }));
+                });
         });
     </script>
 </body>

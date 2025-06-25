@@ -1,0 +1,42 @@
+/* Critical rendering styles to prevent layout shifts */
+.navbar-placeholder {
+  height: 64px; /* Approximate height of navbar */
+}
+
+.footer-placeholder {
+  height: 100px; /* Minimal height for footer */
+}
+
+/* Minimize Content Layout Shifts (CLS) */
+img, video, iframe {
+  height: auto;
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Container for image placeholders */
+.img-container {
+  position: relative;
+  overflow: hidden;
+  background-color: #f3f4f6;
+}
+
+/* Animations for content loading */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+/* Optimize font rendering */
+body {
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Optimize CSS variables for performance */
+:root {
+  color-scheme: light;
+}

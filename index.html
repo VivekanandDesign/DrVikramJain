@@ -84,21 +84,42 @@
       ]
     }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="src/css/styles.css">
-    <script>
-        // Function to load HTML components
-        async function loadComponent(url, targetId) {
-            try {
-                const response = await fetch(url);
-                const html = await response.text();
-                document.getElementById(targetId).innerHTML = html;
-            } catch (error) {
-                console.error('Error loading component:', error);
-            }
-        }
-    </script>
+    <!-- Preload critical resources -->
+    <link rel="preload" href="src/components/navbar.html" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="src/components/footer.html" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="src/css/critical.css" as="style">
+    
+    <!-- Critical CSS inlined for faster rendering -->
+    <link rel="stylesheet" href="src/css/critical.css">
+    <style>
+        /* Critical styles for initial render */
+        body{margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif;line-height:1.5}
+        .component-placeholder{min-height:30px;background:linear-gradient(90deg,#f7f7f7,#eee,#f7f7f7);background-size:200% 100%;animation:placeholder-pulse 1.5s ease-in-out infinite}
+        @keyframes placeholder-pulse{0%{background-position:0% 0}100%{background-position:-200% 0}}
+        
+        /* Mobile menu critical styles */
+        #mobileMenu{display:none;opacity:1;visibility:visible;position:fixed;inset:0;z-index:999;background:white;overflow-y:auto;transition:all 0.3s ease}
+        #mobileMenu:not(.hidden){display:block}
+        body.overflow-hidden{overflow:hidden;position:fixed;width:100%;height:100%}
+        #mobileMenuButton{-webkit-tap-highlight-color:transparent}
+        @media (min-width:768px){#mobileMenu{display:none !important}}
+    </style>
+    
+    <!-- External CSS - loaded asynchronously -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="src/css/styles.css" media="print" onload="this.media='all'">
+    
+    <!-- Fallback if JS disabled -->
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+        <link rel="stylesheet" href="src/css/styles.css">
+    </noscript>
+    
+    <!-- TailwindCSS - defer loading to improve performance -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    
+    <!-- Optimized component loader -->
+    <script src="src/js/component-loader.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation Component -->
@@ -1190,15 +1211,35 @@ The department offers specialized immunomodulatory therapy including high dose s
     <!-- Footer Component -->
     <div id="footerComponent"></div>
 
-    <!-- Scripts -->
-    <script src="src/js/main.js"></script>
-    <script src="src/js/navigation-fix.js"></script>
+    <!-- Non-critical Scripts - deferred for performance -->
+    <script src="src/js/main.js" defer></script>
+    <script src="src/js/navigation-fix.js" defer></script>
+    <script src="src/js/image-lazy-loader.js" defer></script>
+    
+    <!-- Page-specific initialization -->
     <script>
-        // Load the navbar and footer components
+        // Optimized component loading with prioritization
         document.addEventListener('DOMContentLoaded', () => {
-            loadComponent('src/components/navbar.html', 'navbarComponent');
-            loadComponent('src/components/footer.html', 'footerComponent');
-        });
+            if (typeof loadComponent === 'function') {
+                // Load critical components first
+                loadComponent('src/components/navbar.html', 'navbarComponent');
+                
+                // Schedule less critical components with slight delay for better initial rendering
+                setTimeout(() => {
+                    loadComponent('src/components/footer.html', 'footerComponent');
+                }, 100);
+            }
+        }, {once: true});
+        
+        // Performance optimization - remove unnecessary event listeners after page load
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                // Clean up any observers that are no longer needed
+                if (window.performance) {
+                    performance.mark('fully-loaded');
+                }
+            }, 1000);
+        }, {once: true});
     </script>
 </body>
 </html>

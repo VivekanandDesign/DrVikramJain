@@ -97,6 +97,22 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* Critical mobile menu CSS for better performance */
+        #mobileMenu {
+            transition: all 0.3s ease-in-out;
+        }
+        .overflow-hidden {
+            overflow: hidden !important; 
+            position: relative;
+            height: 100%;
+        }
+        @media (max-width: 767px) {
+            body.overflow-hidden {
+                position: fixed;
+                width: 100%;
+                overflow-y: hidden;
+            }
+        }
         /* Hide scrollbar but keep functionality */
         .hide-scrollbar {
             -ms-overflow-style: none;  /* IE and Edge */
@@ -576,11 +592,33 @@
             });
     </script>
     <script src="../src/js/main.js"></script>
-    <script src="../src/js/navigation-fix.js"></script>
+    <script src="../src/js/navigation-fix.js" defer></script>
     <script>
-        // Load the navbar component
+        // Load the navbar component with enhanced navigation fix
         document.addEventListener('DOMContentLoaded', () => {
-            loadComponent('../src/components/navbar.html', 'navbarComponent');
+            // Load navbar first
+            loadComponent('../src/components/navbar.html', 'navbarComponent')
+                .then(() => {
+                    // Dispatch a custom event to let other scripts know the component is loaded
+                    document.dispatchEvent(new CustomEvent('component:loaded', {
+                        detail: { targetId: 'navbarComponent' }
+                    }));
+                    
+                    // Force navigation fix to run again for path correction
+                    if (window.fixNavigation) {
+                        window.fixNavigation();
+                    }
+                });
+                
+            // Load footer with slight delay
+            setTimeout(() => {
+                loadComponent('../src/components/footer.html', 'footerComponent')
+                    .then(() => {
+                        document.dispatchEvent(new CustomEvent('component:loaded', {
+                            detail: { targetId: 'footerComponent' }
+                        }));
+                    });
+            }, 100);
         });
     </script>
 </body>

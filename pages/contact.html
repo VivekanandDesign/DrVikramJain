@@ -92,21 +92,42 @@
       "url": "https://drvikramrajjainrheumatologist.in/contact"
     }
     </script>
-    <link href="../src/css/styles.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script>
-        // Function to load HTML components
-        async function loadComponent(url, targetId) {
-            try {
-                const response = await fetch(url);
-                const html = await response.text();
-                document.getElementById(targetId).innerHTML = html;
-            } catch (error) {
-                console.error('Error loading component:', error);
-            }
-        }
-    </script>
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../src/components/navbar.html" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="../src/components/footer.html" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="../src/components/contact-bar.html" as="fetch" crossorigin="anonymous">
+    
+    <!-- Critical CSS inlined for faster rendering -->
+    <style>
+        /* Critical styles for initial render */
+        body{margin:0;padding:0;font-family:system-ui,-apple-system,sans-serif;line-height:1.5}
+        .component-placeholder{min-height:30px;background:linear-gradient(90deg,#f7f7f7,#eee,#f7f7f7);background-size:200% 100%;animation:placeholder-pulse 1.5s ease-in-out infinite}
+        @keyframes placeholder-pulse{0%{background-position:0% 0}100%{background-position:-200% 0}}
+        .contact-form{padding:2rem}
+        
+        /* Mobile menu critical styles */
+        #mobileMenu{display:none;opacity:1;visibility:visible;position:fixed;inset:0;z-index:999;background:white;overflow-y:auto;transition:all 0.3s ease}
+        #mobileMenu:not(.hidden){display:block}
+        body.overflow-hidden{overflow:hidden;position:fixed;width:100%;height:100%}
+        #mobileMenuButton{-webkit-tap-highlight-color:transparent}
+        @media (min-width:768px){#mobileMenu{display:none !important}}
+    </style>
+    
+    <!-- External CSS - loaded asynchronously -->
+    <link rel="stylesheet" href="../src/css/styles.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- Fallback if JS disabled -->
+    <noscript>
+        <link rel="stylesheet" href="../src/css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    </noscript>
+    
+    <!-- TailwindCSS - defer loading to improve performance -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    
+    <!-- Optimized component loader -->
+    <script src="../src/js/component-loader.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation Component -->
@@ -137,10 +158,10 @@
     <!-- Emergency Contact Banner -->
     <section class="bg-gradient-to-r from-red-600 to-red-700 text-white py-6 md:py-8 relative overflow-hidden">
         <div class="absolute inset-0 bg-pattern-dots opacity-10"></div>
-        <div class="container mx-auto px-6 relative">
+        <div class="container mx-auto px-4 sm:px-6 relative">
             <div class="flex flex-col md:flex-row items-center justify-between">
-                <div class="flex items-center mb-4 md:mb-0">
-                    <div class="mr-4 bg-white/20 p-3 rounded-full">
+                <div class="flex items-center mb-6 md:mb-0 text-center md:text-left w-full md:w-auto">
+                    <div class="mr-4 bg-white/20 p-3 rounded-full hidden sm:block">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
                         </svg>
@@ -150,22 +171,22 @@
                         <p class="text-white/80">For urgent medical assistance</p>
                     </div>
                 </div>
-                <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-6">
-                    <a href="tel:+918040875555" class="flex items-center bg-white text-red-600 hover:bg-red-50 px-6 py-3 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 w-full md:w-auto">
+                    <a href="tel:+918040875555" class="flex items-center justify-center w-full sm:w-auto bg-white text-red-600 hover:bg-red-50 px-4 sm:px-6 py-3 rounded-full font-medium transition-all transform hover:scale-105 shadow-lg text-sm sm:text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
-                        Bhagwan Mahaveer Jain Hospital Emergency: 080 4087 5555
+                        <span>Emergency: 080 4087 5555</span>
                     </a>
-                    <a href="mailto:vikramraj.jain@gmail.com" class="flex items-center bg-white/20 hover:bg-white/30 px-6 py-3 rounded-full font-medium transition-all">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <a href="mailto:vikramraj.jain@gmail.com" class="flex items-center justify-center w-full sm:w-auto bg-white/20 hover:bg-white/30 px-4 sm:px-6 py-3 rounded-full font-medium transition-all mx-0 sm:mx-3 text-sm sm:text-base">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                         </svg>
-                        vikramraj.jain@gmail.com
+                        <span>vikramraj.jain@gmail.com</span>
                     </a>
-                    <a href="https://wa.me/919742715139" class="flex items-center bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-medium transition-all ml-0 sm:ml-2" target="_blank" rel="noopener">
-                        <i class="fab fa-whatsapp mr-2"></i>
-                        WhatsApp: 97427 15139
+                    <a href="https://wa.me/919742715139" class="flex items-center justify-center w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-3 rounded-full font-medium transition-all text-sm sm:text-base" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp mr-2 flex-shrink-0"></i>
+                        <span>WhatsApp: 97427 15139</span>
                     </a>
                 </div>
             </div>
@@ -173,14 +194,14 @@
     </section>
 
     <!-- Hospital Locations Section -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-6">
-            <div class="text-center max-w-3xl mx-auto mb-12">
+    <section class="py-12 md:py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-3xl mx-auto mb-8 md:mb-12">
                 <span class="text-primary font-semibold">Locations</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">Hospital Locations & Timings</h2>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">Hospital Locations & Timings</h2>
                 <p class="text-gray-600">Dr. Vikram Jain provides consultations at these premium hospitals in Bangalore.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 <!-- Padmashree Diagnostics -->
                 <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100">
                     <div class="h-48 overflow-hidden flex items-center justify-center bg-gradient-to-br from-primary/20 to-blue-200">
@@ -285,14 +306,61 @@
     <!-- <div id="hospitalLocationsInclude"></div> -->
     <!-- Footer Component -->
     <div id="footerComponent"></div>
+    
+    <!-- Non-critical Scripts - deferred for performance -->
+    <script src="../src/js/main.js" defer></script>
+    <script src="../src/js/navigation-fix.js" defer></script>
+    <script src="../src/js/image-lazy-loader.js" defer></script>
+    
+    <!-- Page-specific initialization -->
     <script>
-        // Load components after DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            loadComponent('../src/components/navbar.html', 'navbarComponent');
-            loadComponent('../src/components/contact-bar.html', 'contactBarComponent');
-            loadComponent('../src/components/hospital-locations.html', 'hospitalLocationsInclude');
-            loadComponent('../src/components/footer.html', 'footerComponent');
-        });
+        // Optimized component loading with prioritization
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof loadComponent === 'function') {
+                // Load critical components first
+                loadComponent('../src/components/navbar.html', 'navbarComponent')
+                    .then(() => {
+                        // Dispatch a custom event to let other scripts know the component is loaded
+                        document.dispatchEvent(new CustomEvent('component:loaded', {
+                            detail: { targetId: 'navbarComponent' }
+                        }));
+                        
+                        // Force navigation fix to run again to ensure paths are correct
+                        if (window.fixNavigation) {
+                            window.fixNavigation();
+                        }
+                    });
+                
+                // Schedule less critical components with slight delay
+                setTimeout(() => {
+                    loadComponent('../src/components/contact-bar.html', 'contactBarComponent')
+                        .then(() => {
+                            document.dispatchEvent(new CustomEvent('component:loaded', {
+                                detail: { targetId: 'contactBarComponent' }
+                            }));
+                        });
+                        
+                    loadComponent('../src/components/footer.html', 'footerComponent')
+                        .then(() => {
+                            document.dispatchEvent(new CustomEvent('component:loaded', {
+                                detail: { targetId: 'footerComponent' }
+                            }));
+                        });
+                }, 100);
+                
+                // Load the lowest priority component last
+                setTimeout(() => {
+                    if (document.getElementById('hospitalLocationsInclude')) {
+                        loadComponent('../src/components/hospital-locations.html', 'hospitalLocationsInclude')
+                            .then(() => {
+                                document.dispatchEvent(new CustomEvent('component:loaded', {
+                                    detail: { targetId: 'hospitalLocationsInclude' }
+                                }));
+                            });
+                    }
+                }, 300);
+            }
+        }, {once: true});
     </script>
 </body>
 </html>

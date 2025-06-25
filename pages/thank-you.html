@@ -10,6 +10,24 @@
     <link href="../src/css/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Critical mobile menu CSS for better performance */
+        #mobileMenu {
+            transition: all 0.3s ease-in-out;
+        }
+        .overflow-hidden {
+            overflow: hidden !important; 
+            position: relative;
+            height: 100%;
+        }
+        @media (max-width: 767px) {
+            body.overflow-hidden {
+                position: fixed;
+                width: 100%;
+                overflow-y: hidden;
+            }
+        }
+    </style>
     <script>
         // Function to load HTML components
         async function loadComponent(url, targetId) {
@@ -187,5 +205,7 @@
         //     window.location.href = '../index.html';
         // }, 30000);
     </script>
+    <script src="../src/js/main.js"></script>
+    <script src="../src/js/navigation-fix.js" defer></script>
 </body>
 </html>

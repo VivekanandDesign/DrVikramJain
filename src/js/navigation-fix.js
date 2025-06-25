@@ -55,7 +55,7 @@
             const element = document.getElementById(id);
             if (!element) return;
             
-            // Create absolute paths to ensure consistency regardless of current location
+            // Create context-aware paths based on current location
             if (id.includes('home')) {
                 element.href = basePath + 'index.html';
                 console.log('Set home link to:', element.href);
@@ -69,6 +69,11 @@
                 element.href = basePath + pagesPath + 'contact.html';
                 console.log('Set contact link to:', element.href);
             }
+            
+            // Add event listener to debug the navigation and prevent default if needed
+            element.addEventListener('click', function(e) {
+                console.log('Navigation clicked:', this.id, 'href =', this.href);
+            });
         });
         
         // Use minimal query to optimize performance for remaining links
@@ -100,8 +105,8 @@
             else if (href.startsWith('/pages/')) {
                 const pageName = href.split('/').pop();
                 if (pageName) {
-                    // Always use the correct path based on current location
-                    link.href = inPagesDir ? pageName : 'pages/' + pageName;
+                    // Keep absolute path format when on root, use relative path when in pages dir
+                    link.href = inPagesDir ? pageName : href.substring(1); // remove leading slash but keep pages/
                     console.log('Fixed /pages/ link from', href, 'to', link.href);
                 }
             }
@@ -144,6 +149,23 @@
                 if (fileName) {
                     link.setAttribute('href', fileName);
                     console.log('Fixed absolute pages link from', href, 'to', fileName);
+                }
+            });
+        }
+        
+        // Handle special case for links from index to pages directory
+        if (!inPagesDir) {
+            // Fix any navbar links that need to be direct
+            specialNavIds.forEach(id => {
+                const element = document.getElementById(id);
+                if (!element) return;
+                
+                const href = element.getAttribute('href');
+                // Check if this is a navbar link that uses absolute path
+                if (href && href.startsWith('/pages/')) {
+                    // Convert to proper relative path from root
+                    element.href = href.substring(1); // Remove leading slash only
+                    console.log('Fixed absolute navbar link to relative:', element.href);
                 }
             });
         }

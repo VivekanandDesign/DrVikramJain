@@ -96,6 +96,8 @@
     <link href="../src/css/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Critical preload for navbar component -->
+    <link rel="preload" href="../src/components/navbar.html" as="fetch" crossorigin="anonymous">
     <script src="../src/js/component-loader.js"></script>
     <style>
         /* Critical mobile menu CSS for better performance */
@@ -595,7 +597,19 @@
     <script src="../src/js/static-navigation.js"></script>
     <script src="../src/js/main.js" defer></script>
     <script>
-        // Load the navbar component with enhanced navigation fix
+        console.debug('%c SERVICES PAGE - DIAGNOSTIC %c', 'background: #4ecdc4; color: white; padding: 2px 5px;', '');
+        console.debug('Loading static navigation from services.html');
+        
+        // Log debugging info when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.debug('DOMContentLoaded in services.html');
+            console.debug('Current URL:', window.location.href);
+            console.debug('Current pathname:', window.location.pathname);
+        });
+    </script>
+    <script src="../src/js/diagnose.js"></script>
+    <script>
+        // Load the navbar component with static navigation V2
         document.addEventListener('DOMContentLoaded', () => {
             // Load navbar first
             loadComponent('../src/components/navbar.html', 'navbarComponent')
@@ -605,9 +619,12 @@
                         detail: { targetId: 'navbarComponent' }
                     }));
                     
-                    // Force navigation fix to run again for path correction
-                    if (window.fixNavigation) {
-                        window.fixNavigation();
+                    // Force static navigation v2 to run again for path correction
+                    if (window.initializeStaticNavigation) {
+                        window.initializeStaticNavigation();
+                        console.log('Services page: Reinitialized static navigation');
+                    } else {
+                        console.error('Static navigation v2 function not available!');
                     }
                 });
                 

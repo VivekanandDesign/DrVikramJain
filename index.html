@@ -1213,8 +1213,20 @@ The department offers specialized immunomodulatory therapy including high dose s
 
     <!-- Non-critical Scripts - deferred for performance -->
     <script src="src/js/nav-debug.js" defer></script>
-    <script src="src/js/direct-navigation-fix.js" defer></script>
+    <!-- Only using static-navigation.js v2 for all navigation -->
     <script src="src/js/static-navigation.js"></script>
+    <script>
+        console.debug('%c INDEX PAGE - DIAGNOSTIC %c', 'background: #ff6b6b; color: white; padding: 2px 5px;', '');
+        console.debug('Loading static navigation from index.html');
+        
+        // Log debugging info when DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            console.debug('DOMContentLoaded in index.html');
+            console.debug('Current URL:', window.location.href);
+            console.debug('Current pathname:', window.location.pathname);
+        });
+    </script>
+    <script src="src/js/diagnose.js"></script>
     <script src="src/js/main.js" defer></script>
     <script src="src/js/image-lazy-loader.js" defer></script>
     

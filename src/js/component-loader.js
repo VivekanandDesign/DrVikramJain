@@ -82,5 +82,13 @@
                 loadComponent(url, targetId);
             }
         });
+        
+        // After components are loaded, ensure navigation is fixed
+        setTimeout(() => {
+            if (window && window.fixNavigation) {
+                console.log('Component loader triggering navigation fix');
+                window.fixNavigation();
+            }
+        }, 200); // Give components time to load
     }, { once: true });
 })();

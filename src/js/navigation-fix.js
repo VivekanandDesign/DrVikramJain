@@ -55,14 +55,19 @@
             const element = document.getElementById(id);
             if (!element) return;
             
+            // Create absolute paths to ensure consistency regardless of current location
             if (id.includes('home')) {
                 element.href = basePath + 'index.html';
+                console.log('Set home link to:', element.href);
             } else if (id.includes('about')) {
                 element.href = basePath + pagesPath + 'about.html';
+                console.log('Set about link to:', element.href);
             } else if (id.includes('service')) {
                 element.href = basePath + pagesPath + 'services.html';
+                console.log('Set services link to:', element.href);
             } else if (id.includes('contact')) {
                 element.href = basePath + pagesPath + 'contact.html';
+                console.log('Set contact link to:', element.href);
             }
         });
         
@@ -77,31 +82,44 @@
             // Skip links that were already processed
             if (specialNavIds.includes(link.id)) return;
             
-            // Handle home link
+            // Handle home link with explicit path setting
             if (href === '/' || href === 'index.html' || href === '/index.html') {
                 link.href = basePath + 'index.html';
+                console.log('Fixed index link to:', link.href);
             }
             // Handle page links for links that explicitly include 'pages/'
             else if (href.includes('pages/')) {
                 const pageName = href.split('/').pop();
                 if (pageName) {
+                    // Always use the correct path based on current location
                     link.href = inPagesDir ? pageName : 'pages/' + pageName;
+                    console.log('Fixed pages/ link from', href, 'to', link.href);
                 }
             }
             // Special case for root-relative links starting with /pages/
             else if (href.startsWith('/pages/')) {
                 const pageName = href.split('/').pop();
                 if (pageName) {
+                    // Always use the correct path based on current location
                     link.href = inPagesDir ? pageName : 'pages/' + pageName;
+                    console.log('Fixed /pages/ link from', href, 'to', link.href);
                 }
             }
             // Handle links to assets that might be relative to root
             else if (href.startsWith('src/') && inPagesDir) {
                 link.href = '../' + href;
+                console.log('Fixed src/ link from', href, 'to', link.href);
             }
             // Handle links starting with / (root-relative)
             else if (href.startsWith('/') && !href.startsWith('/pages/') && inPagesDir) {
                 link.href = '..' + href;
+                console.log('Fixed root-relative link from', href, 'to', link.href);
+            }
+            // Handle explicit links between pages that might not have the right form
+            else if ((href.endsWith('.html') || href.includes('.html#')) && !href.includes('/') && inPagesDir && !link.id) {
+                // This is likely a direct reference to another page in the same directory
+                // No change needed, but log to confirm
+                console.log('Keeping direct page reference:', href);
             }
         });
 
@@ -115,6 +133,17 @@
                 if (fileName) {
                     link.setAttribute('href', fileName);
                     console.log('Fixed nested pages/ link from', href, 'to', fileName);
+                }
+            });
+            
+            // Fix any absolute URLs that don't have the right prefix
+            document.querySelectorAll('a[href^="/pages/"]').forEach(link => {
+                const href = link.getAttribute('href');
+                // Extract just the filename from /pages/filename.html
+                const fileName = href.split('/').pop();
+                if (fileName) {
+                    link.setAttribute('href', fileName);
+                    console.log('Fixed absolute pages link from', href, 'to', fileName);
                 }
             });
         }

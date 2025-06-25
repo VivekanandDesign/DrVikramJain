@@ -34,18 +34,30 @@
         const inPagesDir = pathname.includes('/pages/') || pathname.endsWith('/pages') || 
                         pathname.includes('pages/') || pathname.match(/\/pages\/[^\/]+\.html$/) ||
                         (isLocalhost && pathname.match(/pages\/[^\/]+\.html$/));
-                        
-        console.log('Navigation fix running for path:', pathname);
-        console.log('In pages directory:', inPagesDir);
         
-        // More robust path handling
+        // Enhanced debugging for current location
+        console.log('%c NAVIGATION FIX - DEBUG INFO ', 'background: #007bff; color: white; padding: 2px 5px;');
+        console.log('Current pathname:', pathname);
+        console.log('Current hostname:', hostname);
+        console.log('Is in pages directory:', inPagesDir);
+        
+        // More robust path handling with absolute URL support
         let basePath = '';
         let pagesPath = 'pages/';
+        
+        // Get the site root path - this is key for navigation
+        const siteRoot = pathname.substring(0, pathname.indexOf('/', 1) !== -1 ? 
+                         pathname.indexOf('/', 1) : pathname.length);
         
         if (inPagesDir) {
             basePath = '../';
             pagesPath = '';
+            console.log('Using basePath for pages directory:', basePath);
+        } else {
+            console.log('Using basePath for root directory:', basePath);
         }
+        
+        console.log('Site root path:', siteRoot);
         
         // Special navigation elements - handle these first with direct IDs
         const specialNavIds = ['homeLink', 'mobileHomeLink', 'aboutLink', 'servicesLink', 'contactLink',
@@ -70,9 +82,18 @@
                 console.log('Set contact link to:', element.href);
             }
             
-            // Add event listener to debug the navigation and prevent default if needed
+            // Add comprehensive debugging on navigation click
             element.addEventListener('click', function(e) {
-                console.log('Navigation clicked:', this.id, 'href =', this.href);
+                console.log('%c NAVIGATION CLICK - ' + this.id + ' %c', 'background: #28a745; color: white; padding: 2px 5px;', '');
+                console.log('Link ID:', this.id);
+                console.log('Original href:', this.getAttribute('href'));
+                console.log('Current href:', this.href);
+                console.log('Target page:', this.href.split('/').pop());
+                
+                // Store debug info in localStorage for cross-page debugging
+                localStorage.setItem('nav_debug_last_clicked', this.id);
+                localStorage.setItem('nav_debug_last_href', this.href);
+                localStorage.setItem('nav_debug_timestamp', new Date().toISOString());
             });
         });
         
@@ -87,27 +108,52 @@
             // Skip links that were already processed
             if (specialNavIds.includes(link.id)) return;
             
+            // Enhanced link handling with comprehensive debugging
+            
             // Handle home link with explicit path setting
             if (href === '/' || href === 'index.html' || href === '/index.html') {
-                link.href = basePath + 'index.html';
-                console.log('Fixed index link to:', link.href);
+                const newHref = basePath + 'index.html';
+                link.href = newHref;
+                link.setAttribute('data-original', href);
+                link.setAttribute('data-fixed', 'true');
+                console.log('Fixed index link to:', newHref);
             }
             // Handle page links for links that explicitly include 'pages/'
             else if (href.includes('pages/')) {
                 const pageName = href.split('/').pop();
                 if (pageName) {
                     // Always use the correct path based on current location
-                    link.href = inPagesDir ? pageName : 'pages/' + pageName;
-                    console.log('Fixed pages/ link from', href, 'to', link.href);
+                    const newHref = inPagesDir ? pageName : 'pages/' + pageName;
+                    link.href = newHref;
+                    link.setAttribute('data-original', href);
+                    link.setAttribute('data-fixed', 'true');
+                    console.log('Fixed pages/ link from', href, 'to', newHref);
+                    
+                    // Force link to page with click listener for debugging
+                    if (inPagesDir) {
+                        link.addEventListener('click', function(e) {
+                            console.log('Link clicked with pages path, current page is in pages dir');
+                        });
+                    }
                 }
             }
             // Special case for root-relative links starting with /pages/
             else if (href.startsWith('/pages/')) {
                 const pageName = href.split('/').pop();
                 if (pageName) {
-                    // Keep absolute path format when on root, use relative path when in pages dir
-                    link.href = inPagesDir ? pageName : href.substring(1); // remove leading slash but keep pages/
-                    console.log('Fixed /pages/ link from', href, 'to', link.href);
+                    // Reliable fix for pages navigation
+                    const newHref = inPagesDir ? pageName : href.substring(1); // remove leading slash but keep pages/
+                    link.href = newHref;
+                    link.setAttribute('data-original', href);
+                    link.setAttribute('data-fixed', 'true');
+                    console.log('Fixed /pages/ link from', href, 'to', newHref);
+                    
+                    // Force link to page with click listener for debugging
+                    if (inPagesDir) {
+                        link.addEventListener('click', function(e) {
+                            console.log('Root-relative link clicked, current page is in pages dir');
+                        });
+                    }
                 }
             }
             // Handle links to assets that might be relative to root
@@ -152,6 +198,40 @@
                 }
             });
         }
+        
+        // Additional check for navigation elements with a class-based approach for more reliability
+        document.querySelectorAll('.nav-link').forEach(navLink => {
+            const href = navLink.getAttribute('href');
+            if (!href) return;
+            
+            // Skip links already processed or non-navigation links
+            if (navLink.dataset.navFixed === 'true') return;
+            
+            let newHref = '';
+            
+            if (inPagesDir) {
+                // When in pages directory, links to other pages should be just the filename
+                if (href.includes('pages/')) {
+                    newHref = href.split('/').pop();
+                } else if (href === 'index.html' || href === '/index.html') {
+                    newHref = '../index.html';
+                }
+            } else {
+                // When in root directory, ensure links to pages have the proper prefix
+                if (href.includes('pages/') && !href.startsWith('/')) {
+                    // Keep as is, these are correctly formatted
+                    return;
+                } else if (href.startsWith('/pages/')) {
+                    newHref = href.substring(1); // Remove leading slash
+                }
+            }
+            
+            if (newHref) {
+                navLink.href = newHref;
+                navLink.dataset.navFixed = 'true';
+                console.log('Fixed nav-link from', href, 'to', newHref);
+            }
+        });
         
         // Handle special case for links from index to pages directory
         if (!inPagesDir) {

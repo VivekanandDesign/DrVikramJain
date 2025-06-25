@@ -15,16 +15,24 @@
         const hostname = window.location.hostname;
         const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
         
+        console.log('%c COMPONENT LOADER - PATH DETECTION %c', 'background: #6f42c1; color: white; padding: 2px 5px;', '');
+        console.log('Processing component URL:', url);
+        console.log('Current pathname:', pathname);
+        
         // Super robust path detection - handle various patterns
         const inPagesDir = pathname.includes('/pages/') || pathname.endsWith('/pages') || 
                         pathname.includes('pages/') || pathname.match(/\/pages\/[^\/]+\.html$/) ||
                         (isLocalhost && pathname.match(/pages\/[^\/]+\.html$/));
+        
+        console.log('Is in pages directory:', inPagesDir);
                         
         // For pages directory, add ../ to paths that don't already have it
+        let adjustedUrl = url;
         if (inPagesDir && !url.startsWith('../')) {
-            return '../' + url;
+            adjustedUrl = '../' + url;
+            console.log('Adjusted component path to:', adjustedUrl);
         }
-        return url;
+        return adjustedUrl;
     }
     
     // Main component loading function

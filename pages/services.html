@@ -21,22 +21,28 @@
       "@context": "https://schema.org",
       "@type": "MedicalBusiness",
       "name": "Dr. Vikramraj Jain Rheumatology Clinic",
-      "medicalSpecialty": "Rheumatology",
+      "email": "vikramraj.jain@gmail.com",
+      "medicalSpecialty": ["Rheumatology", "Clinical Immunology"],
       "availableService": [
         {
           "@type": "MedicalProcedure",
-          "name": "Arthritis Treatment",
-          "description": "Expert treatment for various types of arthritis including rheumatoid arthritis"
+          "name": "Rheumatology Services",
+          "description": "Comprehensive treatment for various types of arthritis and rheumatic conditions"
         },
         {
           "@type": "MedicalProcedure",
-          "name": "Musculoskeletal Ultrasound",
-          "description": "Advanced diagnostic imaging for joint conditions"
+          "name": "Systemic Autoimmune Diseases",
+          "description": "Expert management of complex autoimmune conditions"
         },
         {
           "@type": "MedicalProcedure",
-          "name": "Autoimmune Disease Treatment",
-          "description": "Specialized care for autoimmune disorders"
+          "name": "Pediatric Rheumatology",
+          "description": "Specialized care for children with rheumatic conditions"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Advanced Diagnostics",
+          "description": "State-of-the-art diagnostic procedures including musculoskeletal ultrasound"
         }
       ],
       "address": {
@@ -45,480 +51,515 @@
         "addressRegion": "Karnataka",
         "addressCountry": "IN"
       },
-      "url": "https://drvikramrajjainrheumatologist.in/services"
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "contactType": "emergency",
+          "telephone": "+918040875555"
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "whatsapp",
+          "telephone": "+919742715139"
+        },
+        {
+          "@type": "ContactPoint",
+          "contactType": "appointment",
+          "telephone": "+918023100735"
+        }
+      ],
+      "hospitalAffiliation": [
+        {
+          "@type": "Hospital",
+          "name": "Padmashree Diagnostics, Vijayanagar",
+          "address": "Vijayanagar, Bangalore",
+          "openingHours": "Mon/Wed/Fri/Sat 8:30-9:30 AM",
+          "telephone": ["080-23100735", "080-23406895"]
+        },
+        {
+          "@type": "Hospital",
+          "name": "Bhagwan Mahaveer Jain Hospital, Vasanth Nagar",
+          "address": "Vasanth Nagar, Bangalore",
+          "openingHours": "Mon-Sat 10:00 AM-3:00 PM",
+          "telephone": ["9008912905"]
+        },
+        {
+          "@type": "Hospital",
+          "name": "Optima Super Speciality Hospital, Mahalakshmi Layout",
+          "address": "Mahalakshmi Layout, Bangalore",
+          "openingHours": "Mon-Thu & Sat 5:00-7:00 PM",
+          "telephone": ["99800-94600", "080-23494600"]
+        }
+      ]
     }
     </script>
     <link href="../src/css/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Hide scrollbar but keep functionality */
+        .hide-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;  /* Chrome, Safari and Opera */
+        }
+
+        /* Smooth scroll behavior */
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+    <script>
+        // Function to load HTML components
+        async function loadComponent(url, targetId) {
+            try {
+                const response = await fetch(url);
+                const html = await response.text();
+                document.getElementById(targetId).innerHTML = html;
+            } catch (error) {
+                console.error('Error loading component:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.snap-x');
+            const scrollLeftBtn = document.getElementById('scrollLeft');
+            const scrollRightBtn = document.getElementById('scrollRight');
+            const scrollAmount = 400; // Adjust based on card width
+
+            if (scrollLeftBtn && scrollRightBtn && container) {
+                // Add smooth scrolling class after load to prevent initial animation
+                setTimeout(() => container.classList.add('smooth-scroll'), 100);
+
+                scrollLeftBtn.addEventListener('click', () => {
+                    container.scrollLeft -= scrollAmount;
+                });
+
+                scrollRightBtn.addEventListener('click', () => {
+                    container.scrollLeft += scrollAmount;
+                });
+
+                // Show/hide scroll buttons based on scroll position
+                const updateScrollButtons = () => {
+                    scrollLeftBtn.style.opacity = container.scrollLeft <= 0 ? '0' : '1';
+                    scrollRightBtn.style.opacity = 
+                        container.scrollLeft >= container.scrollWidth - container.clientWidth ? '0' : '1';
+                };
+
+                container.addEventListener('scroll', updateScrollButtons);
+                window.addEventListener('resize', updateScrollButtons);
+                updateScrollButtons(); // Initial check
+            }
+        });
+    </script>
 </head>
 <body class="bg-gray-50">
-    <!-- Include Navbar -->
-    <div id="navbar-placeholder"></div>
+
+    <!-- Navigation Component -->
+    <div id="navbarComponent"></div>
 
     <!-- Hero Section -->
-    <section class="py-20 md:py-28 relative overflow-hidden bg-gradient-to-br from-blue-50 via-primary/5 to-purple-50">
+    <section class="py-16 sm:py-20 md:py-28 relative overflow-hidden bg-gradient-to-br from-blue-50 via-primary/5 to-purple-50">
         <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div class="absolute -top-24 right-0 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div class="absolute -bottom-24 left-0 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
         <div class="container mx-auto px-4 relative">
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-6">
-                    Comprehensive Healthcare Solutions
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="inline-block px-3 py-1.5 sm:px-4 sm:py-2 bg-primary/10 rounded-full text-primary font-medium mb-4 sm:mb-6">
+                    Comprehensive Care
                 </div>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">Our Services</h1>
-                <p class="text-lg text-gray-700 leading-relaxed">
-                    We offer comprehensive care for autoimmune rheumatic diseases, providing accurate diagnosis and advanced treatment options to improve our patients' quality of life.
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">Our Specialized Services</h1>
+                <p class="text-base sm:text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+                    Expert care in rheumatology, immunology, and autoimmune diseases with state-of-the-art diagnostic and treatment approaches.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Clinical Conditions -->
-    <section class="py-16 bg-gradient-to-b from-white to-gray-50">
+    <!-- Service Navigation -->
+    <section class="py-6 sm:py-8 bg-white border-b">
         <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Clinical Conditions</h2>
-                <p class="text-gray-600">Expert care for a wide range of rheumatological and immunological conditions</p>
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4">
+                <a href="#rheumatology" class="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors mb-2">
+                    Rheumatology
+                </a>
+                <a href="#autoimmune" class="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors mb-2">
+                    Autoimmune
+                </a>
+                <a href="#pediatric" class="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors mb-2">
+                    Pediatric Care
+                </a>
+                <a href="#immunology" class="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors mb-2">
+                    Immunology
+                </a>
+                <a href="#diagnostics" class="px-3 py-1.5 sm:px-4 sm:py-2 text-sm sm:text-base rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors mb-2">
+                    Diagnostics
+                </a>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Systemic Connective Tissue Diseases -->
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
+        </div>
+    </section>
+
+    <!-- Rheumatology Services -->
+    <section id="rheumatology" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <div class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-4">
+                    Core Expertise
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Rheumatology Services</h2>
+                <p class="text-lg text-gray-600">Comprehensive care for various rheumatic conditions with personalized treatment plans.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Rheumatoid Arthritis -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative w-full h-48 bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?auto=format&fit=crop&q=80&w=800" 
+                             alt="Rheumatoid Arthritis Treatment" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/e2e8f0/475569?text=Rheumatoid+Arthritis';">
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Systemic Connective Tissue Diseases</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Systemic Lupus Erythematosus (SLE)</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Primary Sjogren Syndrome</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Scleroderma</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Mixed Connective Tissue Diseases</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Systemic Vasculitis</span>
-                        </li>
-                    </ul>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Rheumatoid Arthritis</h3>
+                        <p class="text-gray-600 mb-4">Expert management of inflammatory arthritis affecting multiple joints with latest treatment protocols.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Early diagnosis and intervention
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Customized treatment plans
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Regular disease activity monitoring
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Inflammatory Arthritis -->
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
+                <!-- Ankylosing Spondylitis -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative w-full h-48 bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&q=80&w=800" 
+                             alt="Ankylosing Spondylitis Treatment" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/e2e8f0/475569?text=Ankylosing+Spondylitis';">
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Inflammatory Arthritis</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Rheumatoid Arthritis</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Spondyloarthropathies</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Psoriatic Arthritis</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Crystal Arthritis (Gout, CPPD)</span>
-                        </li>
-                    </ul>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Ankylosing Spondylitis</h3>
+                        <p class="text-gray-600 mb-4">Specialized care for inflammatory back pain and spine conditions with focus on mobility.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Advanced imaging diagnostics
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Exercise and lifestyle guidance
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Biologic therapy when indicated
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <!-- Pediatric Immunology -->
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                        </svg>
+                <!-- Psoriatic Arthritis -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative w-full h-48 bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&q=80&w=800" 
+                             alt="Psoriatic Arthritis Treatment" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/e2e8f0/475569?text=Psoriatic+Arthritis';">
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Pediatric Immunology</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Juvenile Idiopathic Arthritis</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Primary Immunodeficiency Disorders</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Soft Tissue Rheumatism -->
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                        </svg>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Psoriatic Arthritis</h3>
+                        <p class="text-gray-600 mb-4">Integrated care approach for managing both joint inflammation and skin manifestations.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Coordinated care with dermatologists
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Targeted therapy selection
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Joint protection strategies
+                            </li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Soft Tissue Rheumatism</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Fibromyalgia</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Complex Regional Pain Syndrome</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Myofascial Syndromes</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Allergic & Immunological Disorders -->
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Allergic & Immunological Disorders</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Chronic Urticaria/Angioedema</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Allergic Rhinitis/Conjunctivitis</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Primary Immunodeficiency Diseases</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Other Conditions -->
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Other Conditions</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Osteoarthritis</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Osteoporosis</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Single Organ Immune Disorders</span>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Diagnostic Procedures -->
-    <section class="py-16 bg-gradient-to-br from-blue-50/50 via-white to-purple-50/30 relative overflow-hidden">
-        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div class="absolute -top-24 right-0 w-96 h-96 bg-blue-100/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div class="absolute -bottom-24 left-0 w-96 h-96 bg-purple-100/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="container mx-auto px-4 relative">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <span class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-4">Advanced Diagnostics</span>
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Diagnostic Procedures</h2>
-                <p class="text-gray-600">State-of-the-art diagnostic procedures for accurate assessment and treatment planning</p>
+    <!-- Systemic Autoimmune Diseases -->
+    <section id="autoimmune" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <div class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-4">
+                    Complex Care
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Systemic Autoimmune Diseases</h2>
+                <p class="text-lg text-gray-600">Expert management of complex autoimmune conditions affecting multiple organ systems.</p>
             </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                        </svg>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- SLE -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative w-full h-48 bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1576671081837-49000212a370?auto=format&fit=crop&q=80&w=800" 
+                             alt="Lupus (SLE) Treatment" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/e2e8f0/475569?text=Lupus+Treatment';">
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Specialized Procedures</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Joint and Soft Tissue Ultrasound</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Joint Aspiration</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Crystal Examination</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Autologous Serum Skin Test</span>
-                        </li>
-                    </ul>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Systemic Lupus Erythematosus (SLE)</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive care for this complex autoimmune condition affecting multiple organs.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Multi-organ assessment and monitoring
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Customized immunosuppression
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Flare prevention strategies
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
-                        </svg>
+                <!-- Scleroderma -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative w-full h-48 bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1637059824899-a441006a6875?auto=format&fit=crop&q=80&w=800" 
+                             alt="Scleroderma Treatment" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/e2e8f0/475569?text=Scleroderma+Treatment';">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900/50"></div>
+                        <div class="absolute bottom-2 right-2">
+                            <span class="bg-white/90 text-gray-800 text-xs px-2 py-1 rounded">Medical Consultation</span>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Biopsy Services</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Kidney Biopsy</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Skin Biopsy</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Minor Salivary Gland Biopsy</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Pathergy Test</span>
-                        </li>
-                    </ul>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Scleroderma</h3>
+                        <p class="text-gray-600 mb-4">Specialized care for skin tightening and internal organ involvement in scleroderma.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Organ function monitoring
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Skin care protocols
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Innovative therapies
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                        </svg>
+                <!-- Sjögren's Syndrome -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative w-full h-48 bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1628771065518-0d82f1938462?auto=format&fit=crop&q=80&w=800" 
+                             alt="Sjögren's Syndrome Treatment" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/e2e8f0/475569?text=Sjogrens+Treatment';">
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Advanced Imaging</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Musculoskeletal Ultrasound</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Diagnostic Imaging</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Treatment Response Monitoring</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Therapeutic Services -->
-    <section class="py-16 bg-gradient-to-br from-blue-50/50 via-white to-green-50/30 relative overflow-hidden">
-        <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
-        <div class="absolute -top-24 right-0 w-96 h-96 bg-green-100/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-        <div class="absolute -bottom-24 left-0 w-96 h-96 bg-blue-100/20 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="container mx-auto px-4 relative">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <span class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-4">Advanced Treatment Options</span>
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Therapeutic Services</h2>
-                <p class="text-gray-600">Comprehensive treatment solutions using the latest medical advancements</p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                        </svg>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Sjögren's Syndrome</h3>
+                        <p class="text-gray-600 mb-4">Management of dry eyes, dry mouth, and systemic manifestations of Sjögren's syndrome.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Multidisciplinary approach
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Symptom management
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Quality of life improvement
+                            </li>
+                        </ul>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Immunomodulatory Therapy</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>High Dose Steroids</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Biological Therapy</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Intravenous Immunoglobulin</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Cyclophosphamide Infusion</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Methylprednisolone Infusion</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Biological Treatments</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Infliximab Therapy</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Etanercept Treatment</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Rituximab Therapy</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Tocilizumab Treatment</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="bg-white p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-gray-100 group hover:-translate-y-1">
-                    <div class="w-14 h-14 bg-blue-50 rounded-full flex items-center justify-center mb-6 group-hover:bg-blue-100 transition-colors">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-4 group-hover:text-primary transition-colors">Specialized Procedures</h3>
-                    <ul class="space-y-3 text-gray-600">
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Intra-articular Injections</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Soft Tissue Injections</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Zolendronic Acid Infusion</span>
-                        </li>
-                        <li class="flex items-center space-x-3">
-                            <svg class="w-5 h-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Joint Fluid Analysis</span>
-                        </li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Include Footer -->
-    <div id="footer-placeholder"></div>
+    <!-- Pediatric Rheumatology -->
+    <section id="pediatric" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <div class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-4">
+                    Child-Focused Care
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Pediatric & Young Adult Rheumatology</h2>
+                <p class="text-lg text-gray-600">Specialized care for children and young adults with rheumatic conditions.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Childhood Autoimmune Diseases -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative w-full h-48 bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?auto=format&fit=crop&q=80&w=800" 
+                             alt="Pediatric Rheumatology Care" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/e2e8f0/475569?text=Pediatric+Rheumatology';">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Childhood Autoimmune Diseases</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive care for autoimmune conditions in children with age-appropriate approaches.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Early intervention strategies
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Growth monitoring
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Family-centered care
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Juvenile Arthritis -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative w-full h-48 bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?auto=format&fit=crop&q=80&w=800" 
+                             alt="Juvenile Arthritis Treatment" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/e2e8f0/475569?text=Juvenile+Arthritis';">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Juvenile Idiopathic Arthritis</h3>
+                        <p class="text-gray-600 mb-4">Specialized treatment for various forms of childhood arthritis with focus on long-term outcomes.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Customized treatment plans
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Physical therapy coordination
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                School activity guidance
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Kawasaki Disease -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative w-full h-48 bg-gray-100">
+                        <img src="https://images.unsplash.com/photo-1581595220892-b0739db3ba8c?auto=format&fit=crop&q=80&w=800" 
+                             alt="Kawasaki Disease Treatment" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x400/e2e8f0/475569?text=Kawasaki+Disease';">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Kawasaki Disease</h3>
+                        <p class="text-gray-600 mb-4">Expert management of this acute vasculitis affecting young children with cardiac monitoring.</p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Prompt diagnosis & treatment
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Cardiac assessment
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-4 h-4 text-primary mt-1 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Long-term follow-up care
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- End of Clinical Conditions Section -->
+</div>
+</section>
+
+    <!-- Footer Component -->
+    <div id="footerComponent"></div>
 
     <script>
         // Load navbar and footer
@@ -531,9 +572,16 @@
         fetch('../src/components/footer.html')
             .then(response => response.text())
             .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
+                document.getElementById('footerComponent').innerHTML = data;
             });
     </script>
     <script src="../src/js/main.js"></script>
+    <script src="../src/js/navigation-fix.js"></script>
+    <script>
+        // Load the navbar component
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('../src/components/navbar.html', 'navbarComponent');
+        });
+    </script>
 </body>
 </html>

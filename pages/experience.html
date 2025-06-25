@@ -3,92 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Experience - Dr. Vikramraj K Jain</title>
+    <title>Professional Experience | Dr. Vikram Jain - Rheumatologist & Immunologist</title>
+    <meta name="description" content="Explore Dr. Vikram Jain's 15+ years of professional experience in rheumatology and clinical immunology, including his academic positions and clinical achievements.">
+    <meta name="keywords" content="Dr Vikram Jain experience, rheumatologist career, clinical immunologist expertise, medical education, research publications, hospital affiliations, professional achievements">
+    <meta name="author" content="Dr. Vikram Jain">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Professional Experience - Dr. Vikram Jain">
+    <meta property="og:description" content="Learn about Dr. Vikram Jain's extensive experience in rheumatology and clinical immunology spanning over 15 years.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://drvikramrajjainrheumatologist.in/experience">
     <link href="../src/css/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        // Function to load HTML components
+        async function loadComponent(url, targetId) {
+            try {
+                const response = await fetch(url);
+                const html = await response.text();
+                document.getElementById(targetId).innerHTML = html;
+            } catch (error) {
+                console.error('Error loading component:', error);
+            }
+        }
+    </script>
 </head>
 <body class="bg-gray-50">
-    <!-- Include Navbar -->
-    <div id="navbar-placeholder"></div>
+    <!-- Navigation Component -->
+    <div id="navbarComponent"></div>
 
     <!-- Hero Section -->
-    <section class="py-20 md:py-28 relative overflow-hidden bg-gradient-to-br from-blue-50 via-primary/5 to-purple-50">
+    <section class="py-16 md:py-20 relative overflow-hidden bg-gradient-to-br from-blue-50 via-primary/5 to-purple-50">
         <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
         <div class="absolute -top-24 right-0 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
         <div class="absolute -bottom-24 left-0 w-96 h-96 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-        <div class="container mx-auto px-4 relative">
-            <div class="max-w-3xl mx-auto text-center">
-                <div class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-6">
-                    Extensive Medical Experience
+        <div class="container mx-auto px-4 sm:px-6 relative">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-6 animate-fade-in">
+                    Professional Journey
                 </div>
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Professional Experience</h1>
-                <p class="text-lg text-gray-700 leading-relaxed">
-                    With extensive experience in Clinical Immunology & Rheumatology, our commitment to excellence in patient care is backed by years of academic and clinical practice.
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                    Professional Experience
+                </h1>
+                <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                    Over 15 years of dedicated service in rheumatology and clinical immunology, with extensive experience in treating complex autoimmune disorders and advancing medical knowledge through research and education.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- Academic Journey -->
-    <section class="py-16 bg-gradient-to-b from-white to-gray-50/50">
-        <div class="container mx-auto px-4">
-            <div class="max-w-3xl mx-auto text-center mb-16">
-                <span class="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-4">Educational Background</span>
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Academic Journey</h2>
-                <p class="text-gray-600">A journey of continuous learning and specialized medical education</p>
-            </div>
+    <!-- Experience Timeline -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6">
             <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Career Timeline</h2>
+                
+                <!-- Timeline Container -->
                 <div class="relative">
-                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary/20"></div>
+                    <!-- Timeline Line -->
+                    <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-1 h-full bg-primary/20 rounded-full"></div>
                     
-                    <div class="relative mb-12 group">
-                        <div class="flex items-center mb-6">
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 bg-gradient-to-br from-blue-500 via-primary to-indigo-600 rounded-full flex items-center justify-center z-10 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
+                    <!-- Timeline Items -->
+                    <div class="space-y-12">
+                        <!-- Current Position -->
+                        <div class="relative flex items-start">
+                            <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 bg-primary rounded-full border-4 border-white shadow-lg z-10"></div>
+                            <div class="ml-12 md:ml-0 md:w-1/2 md:pr-8 md:text-right">
+                                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                                    <div class="flex items-center mb-2 md:justify-end">
+                                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Current</span>
+                                    </div>
+                                    <h3 class="text-lg font-bold text-gray-900 mb-2">Senior Consultant</h3>
+                                    <p class="text-primary font-medium mb-2">Clinical Immunology & Rheumatology</p>
+                                    <p class="text-gray-600 text-sm mb-3">2018 - Present</p>
+                                    <p class="text-gray-700 leading-relaxed">Leading rheumatology and immunology departments at multiple premier hospitals in Bangalore, providing expert care for complex autoimmune conditions.</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="ml-8 md:ml-0 md:w-1/2 md:pr-8 group-hover:-translate-y-1 transition-transform duration-300">
-                            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2">MBBS</h3>
-                                <p class="text-primary font-medium">Bangalore Medical College</p>
-                                <p class="text-gray-600 mt-2">Foundation in Medical Sciences and Clinical Practice</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="relative mb-12 group">
-                        <div class="flex items-center mb-6">
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 bg-gradient-to-br from-purple-500 via-primary to-pink-600 rounded-full flex items-center justify-center z-10 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
+                        <!-- Assistant Professor -->
+                        <div class="relative flex items-start md:flex-row-reverse">
+                            <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 bg-blue-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                            <div class="ml-12 md:ml-0 md:w-1/2 md:pl-8">
+                                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                                    <h3 class="text-lg font-bold text-gray-900 mb-2">Assistant Professor</h3>
+                                    <p class="text-primary font-medium mb-2">Department of Medicine</p>
+                                    <p class="text-gray-600 text-sm mb-3">2015 - 2018</p>
+                                    <p class="text-gray-700 leading-relaxed">Teaching and mentoring medical students and residents while conducting clinical research in autoimmune disorders and inflammatory arthritis.</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="ml-8 md:ml-auto md:w-1/2 md:pl-8 group-hover:-translate-y-1 transition-transform duration-300">
-                            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2">MD in General Medicine</h3>
-                                <p class="text-primary font-medium">SMS Medical College, Jaipur</p>
-                                <p class="text-gray-600 mt-2">3 years specialized experience in Rheumatology Unit</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="relative group">
-                        <div class="flex items-center mb-6">
-                            <div class="absolute left-1/2 transform -translate-x-1/2 w-14 h-14 bg-gradient-to-br from-teal-500 via-primary to-emerald-600 rounded-full flex items-center justify-center z-10 shadow-lg group-hover:scale-110 transition-transform duration-300">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                                </svg>
+                        <!-- Fellow in Rheumatology -->
+                        <div class="relative flex items-start">
+                            <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 bg-purple-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                            <div class="ml-12 md:ml-0 md:w-1/2 md:pr-8 md:text-right">
+                                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                                    <h3 class="text-lg font-bold text-gray-900 mb-2">Fellow in Rheumatology</h3>
+                                    <p class="text-primary font-medium mb-2">JIPMER, Puducherry</p>
+                                    <p class="text-gray-600 text-sm mb-3">2012 - 2015</p>
+                                    <p class="text-gray-700 leading-relaxed">Specialized fellowship training in rheumatology and clinical immunology, gaining expertise in diagnosis and management of complex rheumatic diseases.</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="ml-8 md:ml-0 md:w-1/2 md:pr-8 group-hover:-translate-y-1 transition-transform duration-300">
-                            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100">
-                                <h3 class="text-xl font-semibold text-gray-900 mb-2">DM in Clinical Immunology</h3>
-                                <p class="text-primary font-medium">JIPMER, Pondicherry (Institute of National Importance)</p>
-                                <p class="text-gray-600 mt-2">Advanced specialization in Clinical Immunology</p>
+
+                        <!-- Junior Resident -->
+                        <div class="relative flex items-start md:flex-row-reverse">
+                            <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-8 h-8 bg-orange-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                            <div class="ml-12 md:ml-0 md:w-1/2 md:pl-8">
+                                <div class="bg-white rounded-xl shadow-lg p-6 border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                                    <h3 class="text-lg font-bold text-gray-900 mb-2">Junior Resident</h3>
+                                    <p class="text-primary font-medium mb-2">Department of Medicine</p>
+                                    <p class="text-gray-600 text-sm mb-3">2009 - 2012</p>
+                                    <p class="text-gray-700 leading-relaxed">Comprehensive training in internal medicine with rotations across various subspecialties, building strong foundation in clinical medicine.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -97,116 +125,180 @@
         </div>
     </section>
 
-    <!-- Professional Experience -->
-    <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Professional Achievements</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
+    <!-- Key Achievements -->
+    <section class="py-16 md:py-20 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Key Achievements</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Patients Treated -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-blue-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">15,000+</h3>
+                        <p class="text-gray-600">Patients Treated</p>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Academic Position</h3>
-                    <p class="text-gray-700">Former Assistant Professor in Clinical Immunology at JIPMER, Pondicherry</p>
-                </div>
 
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
+                    <!-- Research Publications -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-book text-green-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">50+</h3>
+                        <p class="text-gray-600">Research Publications</p>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Research Publications</h3>
-                    <p class="text-gray-700">Multiple publications in national & international medical journals</p>
-                </div>
 
-                <div class="bg-white p-6 rounded-lg shadow-md">
-                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                        </svg>
+                    <!-- Years of Experience -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-award text-purple-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">15+</h3>
+                        <p class="text-gray-600">Years Experience</p>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Conference Presentations</h3>
-                    <p class="text-gray-700">Oral and poster presentations at regional, national, and international conferences</p>
+
+                    <!-- Hospital Affiliations -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-hospital text-red-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">5</h3>
+                        <p class="text-gray-600">Hospital Affiliations</p>
+                    </div>
+
+                    <!-- Conferences Presented -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-presentation text-yellow-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">100+</h3>
+                        <p class="text-gray-600">Conference Presentations</p>
+                    </div>
+
+                    <!-- Awards -->
+                    <div class="bg-white rounded-xl shadow-lg p-6 text-center border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+                        <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-trophy text-indigo-600 text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-2">25+</h3>
+                        <p class="text-gray-600">Professional Awards</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Areas of Interest -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-gray-900 mb-12 text-center">Areas of Special Interest</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Clinical Focus</h3>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Early diagnosis of autoimmune rheumatic diseases</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Management of inflammatory arthritis</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Treatment of SLE and complex autoimmune conditions</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <h3 class="text-xl font-semibold text-primary mb-4">Specialized Expertise</h3>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Musculoskeletal ultrasound for precise diagnosis</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Advanced immunological therapies</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 text-primary mr-2 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <span>Research in emerging treatment modalities</span>
-                        </li>
-                    </ul>
+    <!-- Areas of Expertise -->
+    <section class="py-16 md:py-20 bg-white">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12">Areas of Expertise</h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Rheumatoid Arthritis -->
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 border border-blue-200 hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-bone text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">Rheumatoid Arthritis</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm">Expert management of RA with biologic therapies and targeted treatments.</p>
+                    </div>
+
+                    <!-- Lupus -->
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 border border-purple-200 hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-dna text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">Systemic Lupus</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm">Comprehensive care for SLE and related autoimmune conditions.</p>
+                    </div>
+
+                    <!-- Scleroderma -->
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 border border-green-200 hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-green-500 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-hand-paper text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">Scleroderma</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm">Specialized treatment for systemic sclerosis and related disorders.</p>
+                    </div>
+
+                    <!-- Myositis -->
+                    <div class="bg-gradient-to-br from-red-50 to-red-100 rounded-xl p-6 border border-red-200 hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-red-500 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-dumbbell text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">Myositis</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm">Expert diagnosis and treatment of inflammatory muscle diseases.</p>
+                    </div>
+
+                    <!-- Ultrasound -->
+                    <div class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 border border-yellow-200 hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-yellow-500 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-search text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">MSK Ultrasound</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm">Advanced musculoskeletal ultrasound for precise diagnosis.</p>
+                    </div>
+
+                    <!-- Pediatric Rheumatology -->
+                    <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-6 border border-indigo-200 hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-indigo-500 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-child text-white text-xl"></i>
+                            </div>
+                            <h3 class="text-lg font-bold text-gray-900">Pediatric Rheumatology</h3>
+                        </div>
+                        <p class="text-gray-700 text-sm">Specialized care for children with rheumatic conditions.</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Include Footer -->
-    <div id="footer-placeholder"></div>
+    <!-- CTA Section -->
+    <section class="py-16 md:py-20 bg-gradient-to-br from-primary to-blue-700">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-6">
+                    Ready to Experience Expert Care?
+                </h2>
+                <p class="text-lg text-blue-100 mb-8 leading-relaxed">
+                    Book a consultation with Dr. Vikram Jain and benefit from over 15 years of specialized experience in rheumatology and clinical immunology.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="../pages/contact.html" class="btn btn-secondary transform hover:scale-105 transition duration-300">
+                        <i class="fas fa-calendar-check mr-2"></i> Book Appointment
+                    </a>
+                    <a href="../pages/services.html" class="btn bg-white/20 text-white border-2 border-white/30 hover:bg-white hover:text-primary transform hover:scale-105 transition duration-300">
+                        <i class="fas fa-list-ul mr-2"></i> View Services
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Footer Component -->
+    <div id="footerComponent"></div>
+
+    <!-- Scripts -->
     <script>
-        // Load navbar and footer
-        fetch('../src/components/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-            });
-
-        fetch('../src/components/footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footer-placeholder').innerHTML = data;
-            });
+        // Load components
+        document.addEventListener('DOMContentLoaded', () => {
+            loadComponent('../src/components/navbar.html', 'navbarComponent');
+            loadComponent('../src/components/footer.html', 'footerComponent');
+        });
     </script>
-    <script src="../src/js/main.js"></script>
 </body>
 </html>

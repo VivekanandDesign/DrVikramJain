@@ -9,9 +9,18 @@
         { url: 'src/components/footer.html', targetId: 'footerComponent' }
     ];
     
-    // Handle relative paths based on current location
+    // Handle relative paths based on current location with improved path detection
     function getComponentPath(url) {
-        const inPagesDir = window.location.pathname.includes('/pages/');
+        const pathname = window.location.pathname;
+        const hostname = window.location.hostname;
+        const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
+        
+        // Super robust path detection - handle various patterns
+        const inPagesDir = pathname.includes('/pages/') || pathname.endsWith('/pages') || 
+                        pathname.includes('pages/') || pathname.match(/\/pages\/[^\/]+\.html$/) ||
+                        (isLocalhost && pathname.match(/pages\/[^\/]+\.html$/));
+                        
+        // For pages directory, add ../ to paths that don't already have it
         if (inPagesDir && !url.startsWith('../')) {
             return '../' + url;
         }

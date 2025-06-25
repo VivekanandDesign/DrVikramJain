@@ -5,17 +5,23 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize immediately on page load if components are already there
     initializeUI();
     
+    // Make sure navigation is fixed on DOMContentLoaded
+    if (window.fixNavigation) {
+        window.fixNavigation();
+    }
+    
     // Also listen for component loaded events
     document.addEventListener('component:loaded', (e) => {
         // Short delay to ensure the DOM is updated
         setTimeout(() => {
             initializeUI();
             
-            // Check if navigation fixes need to be applied after UI initialization
+            // Ensure navigation fixes are applied after component loading
             if (window.fixNavigation) {
+                console.log('Fixing navigation after component load');
                 window.fixNavigation();
             }
-        }, 50);
+        }, 100); // Increased delay to ensure DOM is fully updated
     });
     
     // Listen for navigation fixes
@@ -26,6 +32,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const mobileMenuButton = document.getElementById('mobileMenuButton');
         if (mobileMenuButton && !mobileMenuButton.dataset.initialized) {
             initMobileMenu();
+        }
+    });
+    
+    // Also fix navigation on window load as a final check
+    window.addEventListener('load', () => {
+        if (window.fixNavigation) {
+            console.log('Final navigation check on window load');
+            window.fixNavigation();
         }
     });
 });

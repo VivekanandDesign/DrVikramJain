@@ -27,10 +27,13 @@
     function fixNavigation() {
         // Determine location once for better performance
         const pathname = window.location.pathname;
+        const hostname = window.location.hostname;
+        const isLocalhost = hostname === 'localhost' || hostname === '127.0.0.1';
         
-        // More robust path detection
+        // Super robust path detection - handle various patterns
         const inPagesDir = pathname.includes('/pages/') || pathname.endsWith('/pages') || 
-                        pathname.includes('pages/') || pathname.match(/\/pages\/[^\/]+\.html$/);
+                        pathname.includes('pages/') || pathname.match(/\/pages\/[^\/]+\.html$/) ||
+                        (isLocalhost && pathname.match(/pages\/[^\/]+\.html$/));
                         
         console.log('Navigation fix running for path:', pathname);
         console.log('In pages directory:', inPagesDir);

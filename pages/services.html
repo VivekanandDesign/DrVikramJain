@@ -486,16 +486,28 @@
     <div id="footerComponent"></div>
 
     <script>
-        // Function to load components with resilient path determination
+        // Function to load components with improved path handling
         function loadComponentResilient(relativePath, absolutePath, targetId) {
+            console.log(`Loading component for ${targetId} with absolute path: ${absolutePath}`);
+            
+            // Add timestamp to prevent caching issues
+            const cacheBuster = `?v=${new Date().getTime()}`;
+            const absolutePathWithCache = `${absolutePath}${cacheBuster}`;
+            const relativePathWithCache = `${relativePath}${cacheBuster}`;
+            
             // Try absolute path first (for production)
-            fetch(absolutePath)
+            fetch(absolutePathWithCache)
                 .then(response => {
                     if (!response.ok) throw new Error('Failed with absolute path');
                     return response.text();
                 })
                 .then(data => {
+                    if (!document.getElementById(targetId)) {
+                        console.error(`Target element ${targetId} not found`);
+                        return;
+                    }
                     document.getElementById(targetId).innerHTML = data;
+                    console.log(`Successfully loaded component for ${targetId} using absolute path`);
                     // Signal that component was loaded
                     document.dispatchEvent(new CustomEvent('component:loaded', {
                         detail: { targetId: targetId }
@@ -504,13 +516,18 @@
                 .catch(err => {
                     console.log('Falling back to relative path', err);
                     // Fallback to relative path (for development)
-                    fetch(relativePath)
+                    fetch(relativePathWithCache)
                         .then(response => {
                             if (!response.ok) throw new Error('Failed with relative path too');
                             return response.text();
                         })
                         .then(data => {
+                            if (!document.getElementById(targetId)) {
+                                console.error(`Target element ${targetId} not found`);
+                                return;
+                            }
                             document.getElementById(targetId).innerHTML = data;
+                            console.log(`Successfully loaded component for ${targetId} using relative path`);
                             // Signal that component was loaded
                             document.dispatchEvent(new CustomEvent('component:loaded', {
                                 detail: { targetId: targetId }

@@ -35,13 +35,17 @@
         const pathname = window.location.pathname;
         const hostname = window.location.hostname;
         
-        // Multiple checks to ensure robust path detection
+        // Enhanced path detection with more robust checking
         const inPagesDir = pathname.includes('/pages/') || 
                           pathname.includes('pages/') || 
-                          pathname.match(/\/pages\/[^\/]+\.html$/);
+                          pathname.match(/\/pages\/[^\/]+\.html$/) ||
+                          pathname.match(/\/[^\/]+\.html$/) && 
+                          (pathname.includes('about') || 
+                           pathname.includes('services') || 
+                           pathname.includes('contact'));
                           
         console.log('Current pathname:', pathname);
-        console.log('Page location detection - In pages directory:', inPagesDir);
+        console.log('Enhanced page location detection - In pages directory:', inPagesDir);
         
         // Store location for debugging
         localStorage.setItem('nav_debug_last_path', pathname);
@@ -113,10 +117,14 @@
                 const isDeployed = window.location.hostname.includes('netlify.app') || 
                                   !window.location.hostname.includes('localhost');
                                   
-                // Use absolute paths in production, relative in development
+                // Enhanced path selection logic: 
+                // 1. Always use absolute paths in production
+                // 2. Special handling for services links
+                // 3. Fallback to relative paths in development
                 let correctPath;
-                if (isDeployed) {
-                    correctPath = paths.absolute; // Always use absolute paths in production
+                if (isDeployed || id.includes('services')) {
+                    correctPath = paths.absolute; // Always use absolute paths in production and for services
+                    console.log(`Using absolute path for ${id}`);
                 } else {
                     correctPath = inPagesDir ? paths.pages : paths.root; // Use relative paths in development
                 }
@@ -159,9 +167,16 @@
                 link.setAttribute('data-static-nav', 'true');
                 link.setAttribute('data-static-nav-version', '2.0');
             } else if (href.includes('services.html')) {
-                link.setAttribute('href', inPagesDir ? 'services.html' : 'pages/services.html');
+                // For services links, prioritize absolute paths for reliability
+                const isDeployed = window.location.hostname.includes('netlify.app') || 
+                                   !window.location.hostname.includes('localhost');
+                if (isDeployed) {
+                    link.setAttribute('href', '/pages/services.html'); // absolute path for production
+                } else {
+                    link.setAttribute('href', inPagesDir ? 'services.html' : 'pages/services.html');
+                }
                 link.setAttribute('data-static-nav', 'true');
-                link.setAttribute('data-static-nav-version', '2.0');
+                link.setAttribute('data-static-nav-version', '2.0.1');
             } else if (href.includes('contact.html')) {
                 link.setAttribute('href', inPagesDir ? 'contact.html' : 'pages/contact.html');
                 link.setAttribute('data-static-nav', 'true');

@@ -49,47 +49,56 @@
         
         // Define navigation map with context-aware URLs
         const navigationMap = {
-            // Format: 'linkId': { root: 'path for root dir', pages: 'path for pages dir' }
+            // Format: 'linkId': { root: 'path for root dir', pages: 'path for pages dir', absolute: 'absolute path' }
             // Desktop navigation
             'homeLink': {
                 root: 'index.html',
-                pages: '../index.html'
+                pages: '../index.html',
+                absolute: '/index.html'
             },
             'aboutLink': {
                 root: 'pages/about.html',
-                pages: 'about.html'
+                pages: 'about.html',
+                absolute: '/pages/about.html'
             },
             'servicesLink': {
                 root: 'pages/services.html',
-                pages: 'services.html'
+                pages: 'services.html',
+                absolute: '/pages/services.html'
             },
             'contactLink': {
                 root: 'pages/contact.html',
-                pages: 'contact.html'
+                pages: 'contact.html',
+                absolute: '/pages/contact.html'
             },
             
             // Mobile navigation
             'mobileHomeLink': {
                 root: 'index.html',
-                pages: '../index.html'
+                pages: '../index.html',
+                absolute: '/index.html'
             },
             'mobileAboutLink': {
                 root: 'pages/about.html',
-                pages: 'about.html'
+                pages: 'about.html',
+                absolute: '/pages/about.html'
             },
             'mobileServicesLink': {
                 root: 'pages/services.html',
-                pages: 'services.html'
+                pages: 'services.html',
+                absolute: '/pages/services.html'
             },
             'mobileContactLink': {
                 root: 'pages/contact.html',
-                pages: 'contact.html'
+                pages: 'contact.html',
+                absolute: '/pages/contact.html'
             },
             
             // Experience page link
             'experienceLink': {
                 root: 'pages/experience.html',
-                pages: 'experience.html'
+                pages: 'experience.html',
+                absolute: '/pages/experience.html'
             }
         };
         
@@ -99,7 +108,18 @@
             if (link) {
                 // Choose the right path based on current location
                 const paths = navigationMap[id];
-                const correctPath = inPagesDir ? paths.pages : paths.root;
+                
+                // Try to determine if we're on a deployed site vs local development
+                const isDeployed = window.location.hostname.includes('netlify.app') || 
+                                  !window.location.hostname.includes('localhost');
+                                  
+                // Use absolute paths in production, relative in development
+                let correctPath;
+                if (isDeployed) {
+                    correctPath = paths.absolute; // Always use absolute paths in production
+                } else {
+                    correctPath = inPagesDir ? paths.pages : paths.root; // Use relative paths in development
+                }
                 
                 // Set the href attribute directly
                 link.setAttribute('href', correctPath);

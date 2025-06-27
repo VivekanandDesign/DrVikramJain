@@ -486,18 +486,45 @@
     <div id="footerComponent"></div>
 
     <script>
-        // Load navbar and footer
-        fetch('../src/components/navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbarComponent').innerHTML = data;
-            });
-
-        fetch('../src/components/footer.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('footerComponent').innerHTML = data;
-            });
+        // Function to load components with resilient path determination
+        function loadComponentResilient(relativePath, absolutePath, targetId) {
+            // Try absolute path first (for production)
+            fetch(absolutePath)
+                .then(response => {
+                    if (!response.ok) throw new Error('Failed with absolute path');
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById(targetId).innerHTML = data;
+                    // Signal that component was loaded
+                    document.dispatchEvent(new CustomEvent('component:loaded', {
+                        detail: { targetId: targetId }
+                    }));
+                })
+                .catch(err => {
+                    console.log('Falling back to relative path', err);
+                    // Fallback to relative path (for development)
+                    fetch(relativePath)
+                        .then(response => {
+                            if (!response.ok) throw new Error('Failed with relative path too');
+                            return response.text();
+                        })
+                        .then(data => {
+                            document.getElementById(targetId).innerHTML = data;
+                            // Signal that component was loaded
+                            document.dispatchEvent(new CustomEvent('component:loaded', {
+                                detail: { targetId: targetId }
+                            }));
+                        })
+                        .catch(finalErr => {
+                            console.error('All component loading attempts failed', finalErr);
+                        });
+                });
+        }
+        
+        // Load navbar and footer with resilient paths
+        loadComponentResilient('../src/components/navbar.html', '/src/components/navbar.html', 'navbarComponent');
+        loadComponentResilient('../src/components/footer.html', '/src/components/footer.html', 'footerComponent');
     </script>
     <script src="../src/js/static-navigation.js"></script>
     <script src="../src/js/main.js" defer></script>
@@ -514,34 +541,38 @@
     </script>
     <script src="../src/js/diagnose.js"></script>
     <script>
-        // Load the navbar component with static navigation V2
+        // Use DOMContentLoaded to ensure all scripts are properly loaded
         document.addEventListener('DOMContentLoaded', () => {
-            // Load navbar first
-            loadComponent('../src/components/navbar.html', 'navbarComponent')
-                .then(() => {
-                    // Dispatch a custom event to let other scripts know the component is loaded
-                    document.dispatchEvent(new CustomEvent('component:loaded', {
-                        detail: { targetId: 'navbarComponent' }
-                    }));
-                    
-                    // Force static navigation v2 to run again for path correction
+            console.log('DOMContentLoaded in services.html - ensuring navigation is initialized');
+            
+            // Force static navigation to initialize again for path correction
+            if (window.initializeStaticNavigation) {
+                setTimeout(() => {
+                    window.initializeStaticNavigation();
+                    console.log('Services page: Reinitialized static navigation');
+                }, 300); // Delay to ensure all components are loaded
+            } else {
+                console.error('Static navigation function not available! Loading script...');
+                // Try to load the navigation script if not available
+                const script = document.createElement('script');
+                script.src = '/src/js/static-navigation.js';
+                script.onload = () => {
                     if (window.initializeStaticNavigation) {
                         window.initializeStaticNavigation();
-                        console.log('Services page: Reinitialized static navigation');
-                    } else {
-                        console.error('Static navigation v2 function not available!');
+                        console.log('Services page: Loaded and initialized static navigation');
                     }
-                });
-                
-            // Load footer with slight delay
-            setTimeout(() => {
-                loadComponent('../src/components/footer.html', 'footerComponent')
-                    .then(() => {
-                        document.dispatchEvent(new CustomEvent('component:loaded', {
-                            detail: { targetId: 'footerComponent' }
-                        }));
-                    });
-            }, 100);
+                };
+                document.head.appendChild(script);
+            }
+            
+            // Listen for component loading events
+            document.addEventListener('component:loaded', (e) => {
+                console.log(`Component loaded: ${e.detail.targetId}`);
+                // Re-initialize navigation when components load
+                if (window.initializeStaticNavigation) {
+                    window.initializeStaticNavigation();
+                }
+            });
         });
     </script>
 </body>

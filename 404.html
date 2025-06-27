@@ -6,10 +6,12 @@
     <title>Page Not Found (404) | Dr. Vikram Jain - Rheumatologist & Immunologist</title>
     <meta name="description" content="The page you're looking for could not be found. Return to Dr. Vikram Jain's website to find information about rheumatology and clinical immunology services.">
     <meta name="robots" content="noindex, follow">
-    <link href="src/css/styles.css" rel="stylesheet">
+    <!-- Use absolute URLs for resource loading to ensure they work regardless of URL -->
+    <base href="/">
+    <link href="/src/css/styles.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script src="src/js/component-loader.js"></script>
+    <script src="/src/js/component-loader.js"></script>
     <style>
         /* Critical mobile menu CSS for better performance */
         #mobileMenu {
@@ -197,12 +199,12 @@
         });
     </script>
     
-    <script src="src/js/static-navigation.js"></script>
-    <script src="src/js/main.js" defer></script>
+    <script src="/src/js/static-navigation.js"></script>
+    <script src="/src/js/main.js" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Load components and ensure path correction works
-            loadComponent('src/components/navbar.html', 'navbarComponent')
+            loadComponent('/src/components/navbar.html', 'navbarComponent')
                 .then(() => {
                     console.log('Navbar component loaded in 404 page');
                     // Dispatch a custom event to let other scripts know the component is loaded
@@ -220,26 +222,26 @@
                             contact: [document.getElementById('contactLink'), document.getElementById('mobileContactLink')]
                         };
                         
-                        // 404 page is always in root directory
+                        // 404 page is always in root directory - use absolute paths
                         navLinks.home.forEach(link => {
-                            if (link) link.setAttribute('href', 'index.html');
+                            if (link) link.setAttribute('href', '/index.html');
                         });
                         
                         navLinks.about.forEach(link => {
-                            if (link) link.setAttribute('href', 'pages/about.html');
+                            if (link) link.setAttribute('href', '/pages/about.html');
                         });
                         
                         navLinks.services.forEach(link => {
-                            if (link) link.setAttribute('href', 'pages/services.html');
+                            if (link) link.setAttribute('href', '/pages/services.html');
                         });
                         
                         navLinks.contact.forEach(link => {
-                            if (link) link.setAttribute('href', 'pages/contact.html');
+                            if (link) link.setAttribute('href', '/pages/contact.html');
                         });
                     }, 100);
                 });
             
-            loadComponent('src/components/footer.html', 'footerComponent')
+            loadComponent('/src/components/footer.html', 'footerComponent')
                 .then(() => {
                     console.log('Footer component loaded in 404 page');
                     // Dispatch a custom event to let other scripts know the component is loaded

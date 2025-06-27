@@ -2,17 +2,36 @@
 publish = "/"
 command = ""
 
-# Removed the redirect that was sending all traffic to index.html
-# [[redirects]]
-# from = "/*"
-# to = "/index.html"
-# status = 200
+# Handle specific potential problem paths to ensure they go to the correct place
+[[redirects]]
+from = "/services"
+to = "/pages/services.html"
+status = 301
+force = true
 
-# Removed custom 404 handling - using Netlify's default 404 page
-# [[redirects]]
-# from = "/*"
-# to = "/404.html"
-# status = 404
+[[redirects]]
+from = "/about"
+to = "/pages/about.html"
+status = 301
+force = true
+
+[[redirects]]
+from = "/contact"
+to = "/pages/contact.html"
+status = 301
+force = true
+
+[[redirects]]
+from = "/experience"
+to = "/pages/experience.html" 
+status = 301
+force = true
+
+# Custom 404 handling - ensuring it's loaded from the root path
+[[redirects]]
+from = "/*"
+to = "/404.html"
+status = 404
 
 [build.processing]
 skip_processing = false

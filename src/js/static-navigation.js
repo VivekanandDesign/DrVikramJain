@@ -117,16 +117,26 @@
                 const isDeployed = window.location.hostname.includes('netlify.app') || 
                                   !window.location.hostname.includes('localhost');
                                   
-                // Enhanced path selection logic: 
-                // 1. Always use absolute paths in production
-                // 2. Special handling for services links
-                // 3. Fallback to relative paths in development
+                // Ultra-reliable path selection logic (v2.1): 
+                // 1. Always use absolute paths in production environments
+                // 2. Special handling for critical navigation links (services, home)
+                // 3. Base path detection to handle all scenarios
+                // 4. Fallback to relative paths only as last resort
                 let correctPath;
-                if (isDeployed || id.includes('services')) {
-                    correctPath = paths.absolute; // Always use absolute paths in production and for services
-                    console.log(`Using absolute path for ${id}`);
+                
+                // Always use absolute paths in these scenarios for reliability
+                if (isDeployed || 
+                    id.includes('services') || 
+                    id.includes('home') || 
+                    id.includes('Link') ||
+                    window.location.pathname === '/pages/services.html' ||
+                    window.location.pathname.includes('services')) {
+                    correctPath = paths.absolute;
+                    console.log(`Using absolute path for ${id}: ${paths.absolute}`);
                 } else {
-                    correctPath = inPagesDir ? paths.pages : paths.root; // Use relative paths in development
+                    // Fallback to relative paths in development
+                    correctPath = inPagesDir ? paths.pages : paths.root;
+                    console.log(`Using relative path for ${id}: ${correctPath}`);
                 }
                 
                 // Set the href attribute directly

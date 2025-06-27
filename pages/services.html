@@ -16,6 +16,7 @@
     <meta property="og:image:alt" content="Rheumatology Services in Bangalore">
     <link rel="canonical" href="https://drvikramrajjainrheumatologist.in/services">
     <link rel="alternate" href="https://drvikramrajjainrheumatologist.in/services" hreflang="en-IN">
+    <base href="/">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -486,14 +487,23 @@
     <div id="footerComponent"></div>
 
     <script>
-        // Function to load components with improved path handling
+        // Enhanced component loading with guaranteed path resolution
         function loadComponentResilient(relativePath, absolutePath, targetId) {
             console.log(`Loading component for ${targetId} with absolute path: ${absolutePath}`);
+            
+            // Always prioritize absolute paths first
+            const isProduction = 
+                window.location.hostname.includes('netlify') || 
+                window.location.hostname.includes('drvikramrajjain') ||
+                !window.location.hostname.includes('localhost');
             
             // Add timestamp to prevent caching issues
             const cacheBuster = `?v=${new Date().getTime()}`;
             const absolutePathWithCache = `${absolutePath}${cacheBuster}`;
             const relativePathWithCache = `${relativePath}${cacheBuster}`;
+            
+            // Track loading attempts for debugging
+            window.componentLoadAttempts = window.componentLoadAttempts || {};
             
             // Try absolute path first (for production)
             fetch(absolutePathWithCache)
@@ -539,7 +549,7 @@
                 });
         }
         
-        // Load navbar and footer with resilient paths
+        // Load components using absolute paths for maximum reliability
         loadComponentResilient('../src/components/navbar.html', '/src/components/navbar.html', 'navbarComponent');
         loadComponentResilient('../src/components/footer.html', '/src/components/footer.html', 'footerComponent');
     </script>
@@ -558,29 +568,67 @@
     </script>
     <script src="../src/js/diagnose.js"></script>
     <script>
-        // Use DOMContentLoaded to ensure all scripts are properly loaded
+        // Enhanced initialization for guaranteed navigation reliability
         document.addEventListener('DOMContentLoaded', () => {
             console.log('DOMContentLoaded in services.html - ensuring navigation is initialized');
             
-            // Force static navigation to initialize again for path correction
-            if (window.initializeStaticNavigation) {
-                setTimeout(() => {
-                    window.initializeStaticNavigation();
-                    console.log('Services page: Reinitialized static navigation');
-                }, 300); // Delay to ensure all components are loaded
-            } else {
-                console.error('Static navigation function not available! Loading script...');
-                // Try to load the navigation script if not available
-                const script = document.createElement('script');
-                script.src = '/src/js/static-navigation.js';
-                script.onload = () => {
+            // Ensure navigation script is available before anything else
+            function ensureNavigationScript() {
+                return new Promise((resolve) => {
                     if (window.initializeStaticNavigation) {
-                        window.initializeStaticNavigation();
-                        console.log('Services page: Loaded and initialized static navigation');
+                        resolve();
+                        return;
                     }
-                };
-                document.head.appendChild(script);
+                    
+                    console.log('Loading static navigation script explicitly');
+                    const script = document.createElement('script');
+                    // Try absolute path first
+                    script.src = '/src/js/static-navigation.js';
+                    script.onload = resolve;
+                    script.onerror = () => {
+                        // Fallback to relative path
+                        console.log('Falling back to relative path for static-navigation.js');
+                        script.src = '../src/js/static-navigation.js';
+                        script.onload = resolve;
+                        script.onerror = () => {
+                            console.error('Failed to load static-navigation.js');
+                            resolve(); // Resolve anyway to continue
+                        };
+                    };
+                    document.head.appendChild(script);
+                });
             }
+            
+            // Sequential initialization process
+            async function initializeInSequence() {
+                // 1. Make sure navigation script is available
+                await ensureNavigationScript();
+                
+                // 2. Initialize navigation first time
+                if (window.initializeStaticNavigation) {
+                    window.initializeStaticNavigation();
+                    console.log('Services page: First navigation initialization complete');
+                }
+                
+                // 3. Wait for components to load
+                const componentInterval = setInterval(() => {
+                    const navComponent = document.getElementById('navbarComponent');
+                    const footerComponent = document.getElementById('footerComponent');
+                    
+                    if (navComponent && navComponent.innerHTML && footerComponent && footerComponent.innerHTML) {
+                        clearInterval(componentInterval);
+                        
+                        // 4. Initialize navigation again after components are loaded
+                        if (window.initializeStaticNavigation) {
+                            window.initializeStaticNavigation();
+                            console.log('Services page: Navigation reinitialized after components loaded');
+                        }
+                    }
+                }, 100);
+            }
+            
+            // Start the initialization sequence
+            initializeInSequence();
             
             // Listen for component loading events
             document.addEventListener('component:loaded', (e) => {

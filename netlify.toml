@@ -27,11 +27,7 @@ to = "/pages/experience.html"
 status = 301
 force = true
 
-# Custom 404 handling - ensuring it's loaded from the root path
-[[redirects]]
-from = "/*"
-to = "/404.html"
-status = 404
+# Using Netlify's default 404 handling
 
 [build.processing]
 skip_processing = false

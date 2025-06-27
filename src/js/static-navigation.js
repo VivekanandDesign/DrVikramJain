@@ -106,15 +106,17 @@
             }
         };
         
-        // Apply context-aware paths for all navigation links
+        // Apply ultra-reliable path management for navigation links
         Object.keys(navigationMap).forEach(function(id) {
             const link = document.getElementById(id);
             if (link) {
                 // Choose the right path based on current location
                 const paths = navigationMap[id];
                 
-                // Try to determine if we're on a deployed site vs local development
+                // Enhanced deployment detection with multiple checks
                 const isDeployed = window.location.hostname.includes('netlify.app') || 
+                                  window.location.hostname.includes('drvikramjain') ||
+                                  window.location.hostname === 'drvikramjain.netlify.app' ||
                                   !window.location.hostname.includes('localhost');
                                   
                 // Ultra-reliable path selection logic (v2.1): 

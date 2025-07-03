@@ -78,7 +78,9 @@
                 element.href = basePath + pagesPath + 'services.html';
                 console.log('Set services link to:', element.href);
             } else if (id.includes('contact')) {
-                element.href = basePath + pagesPath + 'contact.html';
+                // For contact links, use absolute path in production for reliability
+                const isDeployed = hostname !== 'localhost' && hostname !== '127.0.0.1';
+                element.href = isDeployed ? '/pages/contact.html' : basePath + pagesPath + 'contact.html';
                 console.log('Set contact link to:', element.href);
             }
             

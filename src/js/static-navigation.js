@@ -128,9 +128,12 @@
                 if (isDeployed || 
                     id.includes('services') || 
                     id.includes('home') || 
+                    id.includes('contact') || 
                     id.includes('Link') ||
                     window.location.pathname === '/pages/services.html' ||
-                    window.location.pathname.includes('services')) {
+                    window.location.pathname === '/pages/contact.html' ||
+                    window.location.pathname.includes('services') ||
+                    window.location.pathname.includes('contact')) {
                     correctPath = paths.absolute;
                     console.log(`Using absolute path for ${id}: ${paths.absolute}`);
                 } else {
@@ -187,9 +190,15 @@
                 link.setAttribute('data-static-nav', 'true');
                 link.setAttribute('data-static-nav-version', '2.0.1');
             } else if (href.includes('contact.html')) {
-                link.setAttribute('href', inPagesDir ? 'contact.html' : 'pages/contact.html');
+                // For contact links, prioritize absolute paths for reliability - same as services
+                const isDeployed = !window.location.hostname.includes('localhost');
+                if (isDeployed) {
+                    link.setAttribute('href', '/pages/contact.html'); // absolute path for production
+                } else {
+                    link.setAttribute('href', inPagesDir ? 'contact.html' : 'pages/contact.html');
+                }
                 link.setAttribute('data-static-nav', 'true');
-                link.setAttribute('data-static-nav-version', '2.0');
+                link.setAttribute('data-static-nav-version', '2.0.1');
             } else if (href.includes('index.html') || href === '/' || href === '') {
                 link.setAttribute('href', inPagesDir ? '../index.html' : 'index.html');
                 link.setAttribute('data-static-nav', 'true');

@@ -113,10 +113,8 @@
                 // Choose the right path based on current location
                 const paths = navigationMap[id];
                 
-                // Enhanced deployment detection with multiple checks
-                const isDeployed = window.location.hostname.includes('netlify.app') || 
-                                  window.location.hostname.includes('drvikramjain') ||
-                                  window.location.hostname === 'drvikramjain.netlify.app' ||
+                // Simplified deployment detection
+                const isDeployed = window.location.hostname.includes('drvikramjain') || 
                                   !window.location.hostname.includes('localhost');
                                   
                 // Ultra-reliable path selection logic (v2.1): 
@@ -180,8 +178,7 @@
                 link.setAttribute('data-static-nav-version', '2.0');
             } else if (href.includes('services.html')) {
                 // For services links, prioritize absolute paths for reliability
-                const isDeployed = window.location.hostname.includes('netlify.app') || 
-                                   !window.location.hostname.includes('localhost');
+                const isDeployed = !window.location.hostname.includes('localhost');
                 if (isDeployed) {
                     link.setAttribute('href', '/pages/services.html'); // absolute path for production
                 } else {

@@ -1,5 +1,14 @@
 {
   "port": 3000,
   "files": ["./src/**/*.{html,htm,css,js}", "./*.html"],
-  "server": { "baseDir": "./" }
+  "server": { 
+    "baseDir": "./",
+    "routes": {
+      "/pages": "./pages"
+    }
+  },
+  "startPath": "/index.html",
+  "ghostMode": false,
+  "logLevel": "info",
+  "reloadDelay": 500
 }

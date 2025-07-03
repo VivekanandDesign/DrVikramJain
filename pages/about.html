@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- No-JS fallback script - must be in the head -->
+    <script src="../src/js/no-js-fallback.js"></script>
     <title>About Dr. Vikram Jain | Expert Rheumatologist & Immunologist in Bangalore</title>
     <meta name="description"
         content="Learn about Dr. Vikram Jain, a leading Rheumatologist & Clinical Immunologist in Bangalore with over 15 years of experience in treating autoimmune disorders.">
@@ -74,8 +76,11 @@
     <!-- Optimized component loader -->
     <script src="../src/js/component-loader.js"></script>
     
-    <!-- Contact link navigation fix -->
-    <script src="../src/js/contact-link-fix.js"></script>
+    <!-- Simple navigation script -->
+    <script src="../src/js/simple-navigation.js"></script>
+    
+    <!-- Simple video handler -->
+    <script src="../src/js/simple-video.js"></script>
 </head>
 
 <body class="bg-gray-50">
@@ -150,8 +155,16 @@
                     <!-- Enhanced Video Player Container -->
                     <div class="relative rounded-2xl shadow-2xl overflow-hidden bg-gray-900 transform hover:scale-105 transition-transform duration-300">
                         <!-- Video Player -->
-                        <div id="videoContainer" class="relative aspect-video">
-                            <video class="w-full h-full object-cover" controls preload="metadata" playsinline poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2NzUiIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMUYyOTM3Ii8+CjxjaXJjbGUgY3g9IjYwMCIgY3k9IjMzNy41IiByPSI1MCIgZmlsbD0iIzM5OEVGNyIvPgo8cGF0aCBkPSJNNTgwIDMxN0w2MjAgMzM3LjVMNTgwIDM1OFYzMTdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
+                        <div id="videoContainer" class="video-container aspect-video">
+                            <video class="w-full h-full object-cover" 
+                                autoplay 
+                                muted 
+                                loop 
+                                playsinline
+                                defaultMuted
+                                webkit-playsinline
+                                x5-playsinline  
+                                poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2NzUiIHZpZXdCb3g9IjAgMCAxMjAwIDY3NSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjc1IiBmaWxsPSIjMUYyOTM3Ii8+CjxjaXJjbGUgY3g9IjYwMCIgY3k9IjMzNy41IiByPSI1MCIgZmlsbD0iIzM5OEVGNyIvPgo8cGF0aCBkPSJNNTgwIDMxN0w2MjAgMzM3LjVMNTgwIDM1OFYzMTdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
                                 <source src="../src/images/Who is a Rheumatologist _ When to See a Joint & Autoimmune Specialist _ Dr. Vikramraj K Jain.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
@@ -637,8 +650,15 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Video Card 1 -->
                 <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-                    <div class="aspect-video">
-                        <video class="w-full h-full object-cover rounded-t-lg" controls preload="metadata">
+                    <div class="video-container aspect-video">
+                        <video class="w-full h-full object-cover" 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline
+                            defaultMuted
+                            webkit-playsinline
+                            x5-playsinline>
                             <source src="../src/images/Who is a Rheumatologist _ When to See a Joint & Autoimmune Specialist _ Dr. Vikramraj K Jain.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -651,8 +671,15 @@
 
                 <!-- Video Card 2 -->
                 <div class="bg-white rounded-lg shadow hover:shadow-lg transition-shadow duration-300">
-                    <div class="aspect-video">
-                        <video class="w-full h-full object-cover rounded-t-lg" controls preload="metadata">
+                    <div class="video-container aspect-video">
+                        <video class="w-full h-full object-cover" 
+                            autoplay 
+                            muted 
+                            loop 
+                            playsinline
+                            defaultMuted
+                            webkit-playsinline
+                            x5-playsinline>
                             <source src="../src/images/Protect Your Joints With Early Diagnosis _ Dr. Vikramraj K Jain.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>

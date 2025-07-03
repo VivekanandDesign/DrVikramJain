@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- No-JS fallback script - must be in the head -->
+    <script src="src/js/no-js-fallback.js"></script>
     <title>Dr. Vikram Jain | Best Rheumatologist in Bangalore | Clinical Immunologist</title>
     <meta name="description" content="Dr. Vikram Jain - Leading Rheumatologist & Clinical Immunologist in Bangalore. Expert treatment for arthritis, autoimmune disorders, and rheumatic diseases. Book appointment at Apollo, Fortis, or Lilavati Hospital.">
     <meta name="keywords" content="Dr Vikram Jain, Rheumatologist Bangalore, Clinical Immunologist, Arthritis Treatment, Autoimmune Disease Specialist, Best Rheumatologist, Joint Pain Treatment, Bangalore Medical Care, Apollo Hospital, Fortis Hospital, Lilavati Hospital">
@@ -128,8 +130,11 @@
     <!-- Optimized component loader -->
     <script src="src/js/component-loader.js"></script>
     
-    <!-- Contact link navigation fix -->
-    <script src="src/js/contact-link-fix.js"></script>
+    <!-- Simple navigation script -->
+    <script src="src/js/simple-navigation.js"></script>
+    
+    <!-- Simple video handler -->
+    <script src="src/js/simple-video.js"></script>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation Component -->
@@ -343,14 +348,18 @@
                 <div class="md:w-1/2">
                     <!-- Enhanced Video Container with soft shadow and rounded corners -->
                     <div class="transform hover:-translate-y-1 transition-all duration-300">
-                        <div class="relative rounded-2xl overflow-hidden shadow-2xl h-[320px]">
-                            <!-- Video Element -->
+                        <div class="video-container relative shadow-2xl h-[320px]">
+                            <!-- Video Element - Enhanced for reliable autoplay -->
                             <video 
-                                class="w-full h-full object-cover rounded-2xl"
-                                controls
+                                class="w-full h-full object-cover"
                                 preload="metadata"
-                                controlsList="nodownload"
-                                playsinline>
+                                autoplay
+                                muted
+                                loop
+                                playsinline
+                                defaultMuted
+                                webkit-playsinline
+                                x5-playsinline>
                                 <source src="src/images/Protect Your Joints With Early Diagnosis _ Dr. Vikramraj K Jain.mp4" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>

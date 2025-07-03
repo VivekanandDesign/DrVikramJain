@@ -38,6 +38,8 @@ cp robots.txt build/ 2>/dev/null || :
 cp manifest.json build/ 2>/dev/null || :
 cp sitemap.xml build/ 2>/dev/null || :
 cp service-worker.js build/ 2>/dev/null || :
+cp server.js build/ 2>/dev/null || :
+cp 404.html build/ 2>/dev/null || :
 
 echo "Build complete! Files are in the 'build' directory."
-echo "To preview the production build, run: npx serve build"
+echo "To preview the production build, run: node build/server.js"

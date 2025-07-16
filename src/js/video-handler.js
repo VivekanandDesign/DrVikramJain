@@ -1,10 +1,28 @@
-// Video playback handling
+// Video playback handling - Enhanced autoplay prevention
 document.addEventListener('DOMContentLoaded', function() {
     // Find all videos on the page
     const videos = document.querySelectorAll('video');
     
-    // Add error handling for each video
+    // Prevent autoplay for all videos
     videos.forEach(function(video) {
+        // Remove any autoplay attributes
+        video.removeAttribute('autoplay');
+        video.autoplay = false;
+        video.pause();
+        
+        // Ensure videos stay paused
+        video.addEventListener('loadstart', function() {
+            video.pause();
+        });
+        
+        video.addEventListener('canplay', function() {
+            video.pause();
+        });
+        
+        video.addEventListener('canplaythrough', function() {
+            video.pause();
+        });
+        
         // Handle video loading errors
         video.addEventListener('error', function(e) {
             console.error('Error loading video:', e);

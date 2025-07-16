@@ -97,6 +97,18 @@ video:hover {
     background-repeat: no-repeat;
 }
 
+/* Show play button by default for ready-to-play videos */
+.video-container.ready-to-play::before {
+    opacity: 0.7;
+}
+
+/* Enhanced hover state for ready-to-play videos */
+.video-container.ready-to-play:hover::before {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
 /* When video is paused, always show play button */
 .video-container:not(.playing)::before {
     opacity: 0.7;
@@ -710,4 +722,210 @@ html, body {
         pointer-events: none;
         z-index: 1;
     }
+}
+
+/* Audio state indicators */
+.video-container.playing::after {
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 3;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='16px' height='16px'%3E%3Cpath d='M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.video-container.playing.audio-enabled::after {
+    opacity: 1;
+}
+
+.video-container.playing.audio-muted::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white' width='16px' height='16px'%3E%3Cpath d='M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z'/%3E%3C/svg%3E");
+    opacity: 1;
+    background-color: rgba(255, 82, 82, 0.8);
+}
+
+/* Show audio indicator on hover */
+.video-container:hover::after {
+    opacity: 1 !important;
+}
+
+/* Enhanced Video Play Overlay Styles */
+.video-play-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.video-play-overlay:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.play-button-circle {
+    width: 4rem;
+    height: 4rem;
+    background-color: #3B82F6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.video-play-overlay:hover .play-button-circle {
+    background-color: #2563EB;
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 768px) {
+    .play-button-circle {
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+/* Video Modal Styles */
+.video-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.video-modal video {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0.5rem;
+}
+
+/* Dark theme for experience cards */
+.experience-card-dark {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%) !important;
+    border: 1px solid #4b5563 !important;
+    color: white !important;
+}
+
+.experience-card-dark .text-gray-900 {
+    color: #f9fafb !important;
+}
+
+.experience-card-dark .text-gray-700 {
+    color: #d1d5db !important;
+}
+
+.experience-card-dark .text-gray-600 {
+    color: #9ca3af !important;
+}
+
+/* Dark hover overlays */
+.experience-card-dark .bg-gradient-to-br.from-primary\/10 {
+    background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.2), transparent) !important;
+}
+
+.experience-card-dark .bg-gradient-to-br.from-teal-100\/50 {
+    background: linear-gradient(to bottom right, rgba(20, 184, 166, 0.2), transparent) !important;
+}
+
+.experience-card-dark .bg-gradient-to-br.from-blue-100\/50 {
+    background: linear-gradient(to bottom right, rgba(59, 130, 246, 0.2), transparent) !important;
+}
+
+/* Dark icon backgrounds */
+.experience-card-dark .bg-purple-100 {
+    background-color: #581c87 !important;
+}
+
+.experience-card-dark .bg-teal-100 {
+    background-color: #134e4a !important;
+}
+
+.experience-card-dark .bg-blue-100 {
+    background-color: #1e3a8a !important;
+}
+
+.experience-card-dark .bg-green-100 {
+    background-color: #14532d !important;
+}
+
+/* Dark badge styles */
+.experience-card-dark .bg-primary {
+    background-color: #3b82f6 !important;
+}
+
+.experience-card-dark .bg-teal-100.text-teal-600 {
+    background-color: #134e4a !important;
+    color: #5eead4 !important;
+}
+
+.experience-card-dark .bg-blue-100.text-blue-600 {
+    background-color: #1e3a8a !important;
+    color: #93c5fd !important;
+}
+
+.experience-card-dark .bg-green-100.text-green-600 {
+    background-color: #14532d !important;
+    color: #86efac !important;
+}
+
+/* Dark text colors for icons */
+.experience-card-dark .text-purple-600 {
+    color: #c084fc !important;
+}
+
+.experience-card-dark .text-teal-600 {
+    color: #5eead4 !important;
+}
+
+.experience-card-dark .text-blue-600 {
+    color: #93c5fd !important;
+}
+
+.experience-card-dark .text-green-600 {
+    color: #86efac !important;
+}
+
+/* Dark hover effects */
+.experience-card-dark:hover {
+    background: linear-gradient(135deg, #111827 0%, #1f2937 100%) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5) !important;
+    transform: translateY(-2px) !important;
+}
+
+.experience-card-dark .group-hover\:bg-purple-200:hover {
+    background-color: #6b21a8 !important;
+}
+
+.experience-card-dark .group-hover\:bg-teal-200:hover {
+    background-color: #0f766e !important;
+}
+
+.experience-card-dark .group-hover\:bg-blue-200:hover {
+    background-color: #1d4ed8 !important;
+}
+
+.experience-card-dark .group-hover\:bg-green-200:hover {
+    background-color: #166534 !important;
 }
